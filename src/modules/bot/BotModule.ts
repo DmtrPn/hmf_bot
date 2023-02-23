@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 
-import { MovieUpdate } from './update/MovieUpdate';
+import { StartScene } from './application/StartScene';
+import { CreateRetreatScene } from './application/scenes/CreateRetreatScene';
+import { MainScene } from './application/scenes/MainScene';
 
 @Module({
-    providers: [MovieUpdate],
+    providers: [StartScene, MainScene, CreateRetreatScene],
 })
 export class BotModule {}

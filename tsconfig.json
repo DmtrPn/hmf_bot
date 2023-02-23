@@ -24,7 +24,7 @@
       "@utils/*": ["core/utils/*"],
       "@common/*": ["components/common/*"],
       "@components/*": ["components/*"],
-      "@catalog/*": ["modules/catalog/*"],
+      "@example/*": ["modules/example/*"],
       "@dream/*": ["modules/dream/*"],
       "@wish/*": ["modules/wish/*"],
       "@user/*": ["modules/user/*"],
