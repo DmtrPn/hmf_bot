@@ -1,15 +1,21 @@
+import '@core/di/mockIoC';
+import orderBy from 'lodash/orderBy';
+
 import { makeMockContext } from './mockContext';
-import { ReplyKeyboardMarkup } from './types';
+import { InlineKeyboardMarkup, InlineKeyboardMarkupParams, ReplyKeyboardMarkup } from './types';
+import { SceneName } from '@bot/application/types';
 
 interface ListenerMetadata {
     method: MethodName;
-    args: string[];
+    args: string[] | string[][];
 }
 
 export enum MethodName {
+    Start = 'start',
     On = 'on',
     Command = 'command',
     Hears = 'hears',
+    Help = 'help',
     Action = 'action',
     SceneLeave = 'leave',
     SceneEnter = 'enter',
@@ -25,11 +31,31 @@ export abstract class SceneTest {
     }
 
     protected checkMethodMetadata(target: object, metadata: ListenerMetadata[]): void {
-        expect(Reflect.getMetadata('LISTENERS_METADATA', target)).toStrictEqual(metadata);
+        expect(orderBy(Reflect.getMetadata('LISTENERS_METADATA', target), 'method')).toStrictEqual(orderBy(metadata, 'method'));
+    }
+
+    protected checkRedirectToScene(scene: SceneName): void {
+        expect(this.context.debug.currentScene).toBe(scene);
+    }
+
+    protected checkEmptyReply(): void {
+        expect(this.context.debug.reply).toEqual({});
     }
 
     protected checkReplyMessage(message: string): void {
         expect(this.context.debug.reply.message).toBe(message);
+    }
+
+    protected checkReplyInlineKeyboard(params: InlineKeyboardMarkupParams[][]): void {
+        expect(this.context.debug.reply.extra).toBeDefined();
+
+        const inline_keyboard = (this.context.debug.reply.extra!.reply_markup as InlineKeyboardMarkup)!.inline_keyboard;
+
+        expect(params.length).toEqual(inline_keyboard.length);
+        params.forEach((keyboards, index) => {
+            expect(keyboards.length).toEqual(inline_keyboard[index].length)
+            expect(orderBy(keyboards, 'text')).toStrictEqual(orderBy(inline_keyboard[index], 'text'))
+        });
     }
 
     protected checkReplyKeyboard(keyboard: string, resize?: boolean): void {

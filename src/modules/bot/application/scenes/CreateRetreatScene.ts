@@ -2,9 +2,9 @@ import { Markup } from 'telegraf';
 import { Scene, Hears, Action, SceneEnter, On, Ctx, SceneLeave, Command } from 'nestjs-telegraf';
 
 import { Context } from '@core/types';
-import { SceneNames } from '../types';
+import { SceneName } from '../types';
 
-@Scene(SceneNames.CreateRetreat)
+@Scene(SceneName.CreateRetreat)
 export class CreateRetreatScene {
     @SceneEnter()
     public async onSceneEnter(ctx: Context) {
@@ -22,7 +22,7 @@ export class CreateRetreatScene {
     @Command(['leave'])
     @Hears('🔙Вернуться')
     public async goBack(@Ctx() ctx: Context) {
-        await ctx.scene.enter(SceneNames.Main);
+        await ctx.scene.enter(SceneName.Main);
     }
 
     @Action('setStartDate')

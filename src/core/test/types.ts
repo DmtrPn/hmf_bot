@@ -1,10 +1,11 @@
 // import { ExtraReplyMessage } from 'telegraf/typings/telegram-types';
 
 import { Context } from '../types';
+import { SceneName } from '@bot/application/types';
 
 export interface MockContext extends Context {
     debug: {
-        currentScene: string;
+        currentScene: SceneName;
         reply: Reply;
     };
 }
@@ -22,10 +23,15 @@ interface ExtraReply {
     | ForceReply;
 }
 
-/** This object represents an inline keyboard that appears right next to the message it belongs to. */
+export interface InlineKeyboardMarkupParams {
+    text: string;
+    callback_data: string;
+    hide: boolean;
+
+}
+
 export interface InlineKeyboardMarkup {
-    /** Array of button rows, each represented by an Array of InlineKeyboardButton objects */
-    inline_keyboard: { text: string }[][];
+    inline_keyboard: InlineKeyboardMarkupParams[][];
 }
 
 /** This object represents a custom keyboard with reply options (see Introduction to bots for details and examples). */

@@ -1,9 +1,9 @@
 import { Markup } from 'telegraf';
 import { Scene, Hears, SceneEnter, Action, On, Ctx, SceneLeave } from 'nestjs-telegraf';
-import { SceneNames } from '../types';
+import { SceneName } from '../types';
 import { Context } from '@core/types';
 
-@Scene(SceneNames.Main)
+@Scene(SceneName.Main)
 export class MainScene {
     @SceneEnter()
     public async onSceneEnter(ctx: Context) {
@@ -15,18 +15,13 @@ export class MainScene {
 
     @SceneLeave()
     public async onSceneLeave(@Ctx() ctx: Context) {
-        await ctx.reply('👋');
-    }
-
-    @On('sticker')
-    public async on(@Ctx() ctx: Context) {
-        await ctx.reply('👍');
+        await ctx.reply('🌞');
     }
 
     @Action('startRetreat')
     @Hears('🌺Начать ретрит')
-    public async hears(@Ctx() ctx: Context) {
-        await ctx.scene.enter(SceneNames.CreateRetreat);
+    public async startRetreat(@Ctx() ctx: Context) {
+        await ctx.scene.enter(SceneName.CreateRetreat);
     }
 
     @On('text')

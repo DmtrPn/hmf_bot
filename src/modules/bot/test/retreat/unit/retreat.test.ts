@@ -6,7 +6,7 @@ import '@core/test/unitTestRanner';
 @Describe()
 export class AffirmationAccessControlTest  {
 
-    @Test('Работает создание ретрита')
+    @Test('Work')
     public retreatCreate(): void {
         const created = true;
         expect(created).toBeTruthy();
