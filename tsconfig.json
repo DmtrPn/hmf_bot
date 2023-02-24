@@ -19,6 +19,13 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "baseUrl": "src",
+    "strict": true,
+    "declaration": true,
+    "noImplicitOverride": true,
+    "pretty": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "resolveJsonModule": true,
     "paths": {
       "@core/*": ["core/*"],
       "@utils/*": ["core/utils/*"],

@@ -9,7 +9,7 @@ interface EventData<ET> {
 export abstract class IAuditLogService<ET> {
 
     protected abstract readonly apiKey: string;
-    private client: Amplitude.NodeClient;
+    private client!: Amplitude.NodeClient;
 
     public async logEvent(params: EventData<ET>): Promise<void> {
         const client = this.getClient();

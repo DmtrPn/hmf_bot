@@ -10,7 +10,7 @@ import { BotAppModule } from '../../BotAppModule';
 
 export class BotApplication {
 
-    public app: NestExpressApplication;
+    public app!: NestExpressApplication;
     private dbConnector = DbConnector.getInstance();
 
     public async init(): Promise<void> {
@@ -24,9 +24,13 @@ export class BotApplication {
     }
 
     public async start(): Promise<void> {
-        await this.app.listen(process.env.TB_WEBHOOK_PORT, '127.0.0.1', () => {
+        await this.app.listen(process.env.TB_WEBHOOK_PORT!, '127.0.0.1', () => {
             LoggerFactory.getLogger().info(`Server started at http://127.0.0.1:${process.env.TB_WEBHOOK_PORT}`);
         });
+    }
+
+    public async stop(): Promise<void> {
+        await this.app.close();
     }
 
     protected initWebHook(): void {

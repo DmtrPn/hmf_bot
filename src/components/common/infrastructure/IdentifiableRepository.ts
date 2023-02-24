@@ -15,7 +15,7 @@ import { Repository } from './Repository';
  */
 export abstract class IdentifiableRepository<E extends Entity, M, FO> extends Repository<E, M, FO> {
 
-    protected ormEntity: Class<M>;
+    protected override ormEntity!: Class<M>;
 
     protected constructor(modelClass: Class<M>) {
         super(modelClass);
@@ -54,7 +54,7 @@ export abstract class IdentifiableRepository<E extends Entity, M, FO> extends Re
         await this.save(entity);
     }
 
-    protected async getModel(id: E['id']): Promise<M | undefined> {
+    protected async getModel(id: E['id']): Promise<M | null> {
         return this.manager.findOneBy<M>(this.ormEntity, { id } as FindOptionsWhere<M>);
     }
 

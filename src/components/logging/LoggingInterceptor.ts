@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ExecutionContext, CallHandler } from '@nestjs/common';
 
-const IS_PROD = ['prod', 'production'].includes(process.env.DOBRO_ENV);
+const IS_PROD = ['prod', 'production'].includes(process.env.DOBRO_ENV!);
 
 export class LoggingInterceptor {
 

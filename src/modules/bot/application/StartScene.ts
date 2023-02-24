@@ -25,7 +25,7 @@ export class StartScene {
     }
 
     private logEvent(ctx: Context, eventType: BotAuditEventType, data: object = {}): void {
-        const from = ctx.message?.from ?? ctx.callbackQuery?.from;
+        const from = ctx.message?.from ?? ctx.callbackQuery?.from!;
 
         botAuditLogService.logEvent({
             eventType,

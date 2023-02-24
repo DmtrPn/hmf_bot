@@ -18,10 +18,10 @@ export abstract class IdentifiableQueryService<
     public async getById(id: string): Promise<R> {
         const model = await this.findOneById(id);
 
-        return this.create(model);
+        return this.create(model!);
     }
 
-    protected findOneById(id: string): Promise<M> {
+    protected findOneById(id: string): Promise<M | null> {
         return this.manager.findOneBy<M>(this.modelClass, { id } as FindOptionsWhere<M>);
     }
 

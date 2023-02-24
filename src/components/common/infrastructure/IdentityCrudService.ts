@@ -9,7 +9,7 @@ export abstract class IdentityCrudService<
     FO extends object = {},
 > extends CrudService<M, CreationParams, UpdateParams, FO> {
 
-    public async getById(id: string): Promise<M | undefined> {
+    public async getById(id: string): Promise<M | null> {
         return this.manager.findOneBy<M>(this.modelClass, { id } as FindOptionsWhere<M>);
     }
 

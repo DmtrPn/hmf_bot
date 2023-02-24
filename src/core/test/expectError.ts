@@ -5,7 +5,7 @@ export function expectError(error: { new (...args: any[]): any; }, message?: str
                 let isThrowError = false;
                 try {
                     await descriptor.value.call(this, ...args);
-                } catch (err) {
+                } catch (err: any) {
                     isThrowError = true;
                     expect(err).toBeInstanceOf(error);
 

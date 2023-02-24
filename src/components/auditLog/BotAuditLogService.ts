@@ -9,7 +9,7 @@ export const enum BotAuditEventType {
 }
 
 class BotAuditLogService extends IAuditLogService<BotAuditEventType> {
-    protected readonly apiKey = process.env.AMPLITUDE_BOT_PKEY;
+    protected readonly apiKey = process.env.AMPLITUDE_BOT_PKEY!;
 }
 
 export const botAuditLogService = new BotAuditLogService();

@@ -9,30 +9,20 @@ interface ValidationErrorData extends ErrorData {
 
 class ValidationError extends HttpError {
     protected validationErrors_: ValidationErrorItems;
-    //
-    // constructor(validationErrors: ValidationErrorItems) {
-    //     super();
-    //     this.validationErrors_ = validationErrors;
-    // }
+
+    constructor(validationErrors: ValidationErrorItems) {
+        super();
+        this.validationErrors_ = validationErrors;
+    }
 
     public get code(): ErrorCode {
         return ErrorCode.UnprocessableEntity;
     }
 
-    protected get errorCode(): string {
+    protected override get errorCode(): string {
         return 'Validation';
     }
 
-    // public get data(): ValidationErrorData {
-    //     return {
-    //         ...super.data,
-    //         // validationErrors: this.validationErrors,
-    //     };
-    // }
-
-    // protected get validationErrors(): ValidationErrorItems {
-    //     return this.validationErrors_;
-    // }
 }
 
 export { ValidationError, ValidationErrorData, ValidationErrorItems };

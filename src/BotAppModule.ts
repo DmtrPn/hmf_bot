@@ -9,7 +9,7 @@ import { BotModule } from '@bot/BotModule';
 @Module({
     imports: [
         TelegrafModule.forRoot({
-            token: process.env.TB_TOKEN,
+            token: process.env.TB_TOKEN!,
             middlewares: [sessionMiddleware],
             include: [BotModule],
             launchOptions: process.env.DOBRO_ENV !== 'dev'
