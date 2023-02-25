@@ -3,13 +3,13 @@ module.exports = {
     testEnvironment: 'node',
     globals: {
         'ts-jest': {
-            diagnostics: true,
+            diagnostics: false,
         },
     },
     transform: {
         '^.+\\.tsx?$': 'ts-jest',
     },
-    testRegex: '((\\.|/)(test.ts|spec.js|spec.ts))$',
+    testRegex: '((\\.|/)(test.ts|test.js|spec.js|spec.ts))$',
     testURL: 'http://localhost/',
     moduleDirectories: [
         'node_modules',

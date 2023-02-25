@@ -24,7 +24,8 @@ import isSameDay from 'date-fns/isSameDay';
 import isSameMonth from 'date-fns/isSameMonth';
 import addYears from 'date-fns/addYears';
 import subYears from 'date-fns/subYears';
-import parseISO from 'date-fns/parseISO';
+// import parseISO from 'date-fns/parseISO';
+import parse from 'date-fns/parse';
 import ru from 'date-fns/locale/ru';
 
 import isNil from 'lodash/isNil';
@@ -46,7 +47,7 @@ export enum DateFormatItem {
     Second = 'ss',
 }
 
-export const enum DateFormat {
+export enum DateFormat {
     // @ts-ignore H:mm:ss
     Time = `${DateFormatItem.Hour}:${DateFormatItem.Minute}:${DateFormatItem.Second}`,
     // @ts-ignore dd.MM.yyyy
@@ -68,10 +69,8 @@ export const enum DateFormat {
 
 export class DateHelper {
 
-    // Нужно для Сафари тк там валидные даты инвалидны YYYY-MM-DD DD-MM-YYYY
-    // https://stackoverflow.com/questions/4310953/invalid-date-in-safari
-    public static createDate(value: string): Date {
-        return parseISO(value);
+    public static createDate(value: string, format: DateFormat): Date {
+        return parse(value, format.toString(), new Date());
     }
 
     public static getTime(date: DateType): string {
@@ -210,8 +209,8 @@ export class DateHelper {
     }
 
     public static setDate(
-    value: DateType,
-    { year, month, day }: { year?: number; month?: number; day?: number },
+        value: DateType,
+        { year, month, day }: { year?: number; month?: number; day?: number },
     ): Date {
         const date = new Date(value);
 

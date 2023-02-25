@@ -26,8 +26,12 @@ export abstract class SceneTest {
 
     @BeforeEach()
     public async beforeEach() {
-        this.context = makeMockContext();
+        this.context = makeMockContext({ message: { chat: { id: 1234 } } });
 
+    }
+
+    protected setMessageToContext(message: string): void {
+        this.context = makeMockContext({ message: { text: message, chat: { id: 1234 } } })
     }
 
     protected checkMethodMetadata(target: object, metadata: ListenerMetadata[]): void {
