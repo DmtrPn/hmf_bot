@@ -32,7 +32,7 @@ module.exports = {
         port: Number(REDIS_PORT || 6379),
         username: REDIS_USER_NAME,
         password: REDIS_PASSWORD,
-        keyPrefix: 'dobro',
+        keyPrefix: 'hmf_bot',
     },
     db: {
         type: 'postgres',

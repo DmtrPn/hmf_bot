@@ -3,6 +3,15 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
 export enum ConfigName {
     Log = 'log',
     Db = 'db',
+    Redis = 'redis',
+}
+
+export interface RedisConfig {
+    host: string;
+    port: number;
+    username: string;
+    password: string;
+    keyPrefix: string;
 }
 
 export interface DbConfig extends PostgresConnectionOptions {
@@ -13,4 +22,4 @@ export interface DbConfig extends PostgresConnectionOptions {
     password: string;
 }
 
-export type ConfigType = DbConfig;
+export type ConfigType = DbConfig | RedisConfig;

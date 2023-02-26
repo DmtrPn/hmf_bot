@@ -12,7 +12,17 @@ export class StartSceneTest extends SceneTest {
     public async retreatCreate(): Promise<any> {
         this.checkMethodMetadata(this.scene.start,  [ { method: MethodName.Start, args: [] } ]);
 
-        await this.scene.start(this.context as any);
+        await this.scene.start(this.context);
+
+        this.checkEmptyReply();
+        this.checkRedirectToScene(SceneName.Main);
+    }
+
+    @Test('Create new user on start')
+    public async createUserOnStart(): Promise<any> {
+        this.checkMethodMetadata(this.scene.start,  [ { method: MethodName.Start, args: [] } ]);
+
+        await this.scene.start(this.context);
 
         this.checkEmptyReply();
         this.checkRedirectToScene(SceneName.Main);
@@ -22,7 +32,7 @@ export class StartSceneTest extends SceneTest {
     public async helpRedirectToMainScene(): Promise<any> {
         this.checkMethodMetadata(this.scene.help,  [ { method: MethodName.Help, args: [] } ]);
 
-        await this.scene.help(this.context as any);
+        await this.scene.help(this.context);
 
         this.checkEmptyReply();
         this.checkRedirectToScene(SceneName.Main);
@@ -34,7 +44,7 @@ export class StartSceneTest extends SceneTest {
             { method: MethodName.On, args: [['text', 'sticker', 'message']] },
         ]);
 
-        await this.scene.onText(this.context as any);
+        await this.scene.onText(this.context);
 
         this.checkEmptyReply();
         this.checkRedirectToScene(SceneName.Main);

@@ -1,16 +1,25 @@
 import { TelegrafModule } from 'nestjs-telegraf';
 import { Module } from '@nestjs/common';
-import { session } from 'telegraf';
-
-export const sessionMiddleware = session();
+import RedisSession  from 'telegraf-session-redis';
 
 import { BotModule } from '@bot/BotModule';
+import { Config } from '@core/config/Config';
+import { ConfigName, RedisConfig } from '@core/config/types';
+
+const redisConfig = <RedisConfig>Config.getConfig(ConfigName.Redis);
+
+const session = new RedisSession({
+    store: {
+        host: redisConfig.host,
+        port: redisConfig.port,
+    }
+});
 
 @Module({
     imports: [
         TelegrafModule.forRoot({
             token: process.env.TB_TOKEN!,
-            middlewares: [sessionMiddleware],
+            middlewares: [session],
             include: [BotModule],
             launchOptions: process.env.DOBRO_ENV !== 'dev'
                 ? {
