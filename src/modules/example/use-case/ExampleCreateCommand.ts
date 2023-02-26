@@ -5,7 +5,7 @@ interface Params extends ExampleCreateData {}
 
 export class ExampleCreateCommand extends ExampleCommand<Params> {
 
-    execute(): void | Promise<void> {
+    public execute(): void | Promise<void> {
         return undefined;
     }
 

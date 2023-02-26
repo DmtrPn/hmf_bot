@@ -1,7 +1,7 @@
 import { Identifiable } from '@project-types/common';
 
 export interface BaseFindOptions<I = string> {
-    ids?: I[];
+    id?: I | I[];
 }
 
 export interface ICommand {

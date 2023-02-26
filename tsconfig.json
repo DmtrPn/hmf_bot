@@ -36,7 +36,7 @@
       "@wish/*": ["modules/wish/*"],
       "@user/*": ["modules/user/*"],
       "@project-types/*": ["types/*"],
-      "@bot/*": ["modules/bot/*"]
+      "@retreat/*": ["modules/retreat/*"]
     },
     "typeRoots": [
       "../node_modules/@types",

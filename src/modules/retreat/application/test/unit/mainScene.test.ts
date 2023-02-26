@@ -20,7 +20,7 @@ export class MainSceneTest extends SceneTest {
 
     @Test('On leave replay with sticker')
     public async leaveTest(): Promise<void> {
-        this.checkMethodMetadata(this.scene.onSceneLeave, [{ method: MethodName.SceneLeave, args: [] }])
+        this.checkMethodMetadata(this.scene.onSceneLeave, [{ method: MethodName.SceneLeave, args: [] }]);
 
         await this.scene.onSceneLeave(this.context);
         this.checkReplyMessage('🌞');
@@ -31,7 +31,7 @@ export class MainSceneTest extends SceneTest {
         this.checkMethodMetadata(this.scene.startRetreat, [
             { method: MethodName.Action, args: ['startRetreat'] },
             { method: MethodName.Hears, args: ['🌺Начать ретрит'] },
-        ])
+        ]);
 
         await this.scene.startRetreat(this.context);
         this.checkRedirectToScene(SceneName.CreateRetreat);
@@ -39,7 +39,7 @@ export class MainSceneTest extends SceneTest {
 
     @Test('Show message and inline keyboard on any text')
     public async onTextTest(): Promise<void> {
-        this.checkMethodMetadata(this.scene.onText, [{ method: MethodName.On, args: ['text']}]);
+        this.checkMethodMetadata(this.scene.onText, [{ method: MethodName.On, args: ['text'] }]);
 
         await this.scene.onText(this.context);
         this.checkReplyMessage('Жизнь неожиданна прекрасна');

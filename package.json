@@ -11,15 +11,16 @@
     "checkTypes": "./node_modules/.bin/tsc --noEmit",
     "data:fix": "node dist/bin/dataFix.js",
     "db:clear": "NODE_ENV=test node ./dist/bin/clear-db",
+    "db:init:test": "yarn db:clear && yarn migrate:test",
     "clean:dist": "rm -rf dist",
     "lint": "eslint . --ext .js,.ts ",
     "lint:fix": "eslint . --ext .js,.ts  --fix",
     "migrate:test": "NODE_ENV=test yarn migrate",
     "migrate": "ts-node src/bin/db/migrations:run.ts",
     "migrate:undo": "ts-node src/bin/db/migrations:undo.ts",
-    "test:unit": "NODE_ENV=test jest --detectOpenHandles .*.test.ts",
-    "test:integration": "NODE_ENV=test jest --detectOpenHandles .*.spec.ts",
-    "test": "yarn migrate:test && yarn test:unit && yarn test:integration"
+    "test:u": "NODE_ENV=mock jest --detectOpenHandles .*.test.ts",
+    "test:i": "NODE_ENV=test jest --detectOpenHandles .*.spec.ts",
+    "test": "yatn db:init:test && yarn test:u && yarn test:i"
   },
   "dependencies": {
     "@amplitude/node": "1.10.0",

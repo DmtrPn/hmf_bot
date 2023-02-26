@@ -1,6 +1,6 @@
 module.exports = {
     db: {
-        database: 'dobro_test',
+        database: 'hmf_test',
         logging: ['error'],
     }
 }

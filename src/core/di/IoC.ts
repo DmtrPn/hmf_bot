@@ -1,3 +1,6 @@
-// import { Container } from 'typescript-ioc';
+import { Container } from 'typescript-ioc';
 
-// Container.bind().to();
+import { IUserCrudService } from '@retreat/domain/user/IUserCrudService';
+import { UserCrudService } from '@retreat/infrastructure/user/UserCrudService';
+
+Container.bind(IUserCrudService).to(UserCrudService);

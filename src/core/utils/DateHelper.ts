@@ -69,8 +69,8 @@ export enum DateFormat {
 
 export class DateHelper {
 
-    public static createDate(value: string, format: DateFormat): Date {
-        return parse(value, format.toString(), new Date());
+    public static createDate(value: string, dateFormat: DateFormat): Date {
+        return parse(value, dateFormat.toString(), new Date());
     }
 
     public static getTime(date: DateType): string {
@@ -209,8 +209,8 @@ export class DateHelper {
     }
 
     public static setDate(
-        value: DateType,
-        { year, month, day }: { year?: number; month?: number; day?: number },
+    value: DateType,
+    { year, month, day }: { year?: number; month?: number; day?: number },
     ): Date {
         const date = new Date(value);
 

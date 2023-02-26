@@ -1,7 +1,7 @@
 // import { ExtraReplyMessage } from 'telegraf/typings/telegram-types';
 
 import { Context } from '../types';
-import { SceneName } from '@bot/application/types';
+import { SceneName } from '@retreat/application/types';
 
 export interface MockContext extends Context {
     debug: {

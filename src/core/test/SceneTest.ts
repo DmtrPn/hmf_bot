@@ -3,7 +3,7 @@ import orderBy from 'lodash/orderBy';
 
 import { makeMockContext } from './mockContext';
 import { InlineKeyboardMarkup, InlineKeyboardMarkupParams, ReplyKeyboardMarkup } from './types';
-import { SceneName } from '@bot/application/types';
+import { SceneName } from '@retreat/application/types';
 
 interface ListenerMetadata {
     method: MethodName;
@@ -31,7 +31,7 @@ export abstract class SceneTest {
     }
 
     protected setMessageToContext(message: string): void {
-        this.context = makeMockContext({ message: { text: message, chat: { id: 1234 } } })
+        this.context = makeMockContext({ message: { text: message, chat: { id: 1234 } } });
     }
 
     protected checkMethodMetadata(target: object, metadata: ListenerMetadata[]): void {
@@ -53,12 +53,12 @@ export abstract class SceneTest {
     protected checkReplyInlineKeyboard(params: InlineKeyboardMarkupParams[][]): void {
         expect(this.context.debug.reply.extra).toBeDefined();
 
-        const inline_keyboard = (this.context.debug.reply.extra!.reply_markup as InlineKeyboardMarkup)!.inline_keyboard;
+        const inlineKeyboard = (this.context.debug.reply.extra!.reply_markup as InlineKeyboardMarkup)!.inline_keyboard;
 
-        expect(params.length).toEqual(inline_keyboard.length);
+        expect(params.length).toEqual(inlineKeyboard.length);
         params.forEach((keyboards, index) => {
-            expect(keyboards.length).toEqual(inline_keyboard[index].length)
-            expect(orderBy(keyboards, 'text')).toStrictEqual(orderBy(inline_keyboard[index], 'text'))
+            expect(keyboards.length).toEqual(inlineKeyboard[index].length);
+            expect(orderBy(keyboards, 'text')).toStrictEqual(orderBy(inlineKeyboard[index], 'text'));
         });
     }
 

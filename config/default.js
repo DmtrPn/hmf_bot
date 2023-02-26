@@ -39,7 +39,7 @@ module.exports = {
         host: DB_HOST || '127.0.0.1',
         port: DB_PORT || 5432,
         logging: ['warn', 'error'],
-        database: DB_NAME || 'dobro',
+        database: DB_NAME || 'hmf',
         username: DB_USERNAME || 'gorod',
         password: DB_PASSWORD || '123qwe',
         migrationsRun: false,

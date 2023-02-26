@@ -20,7 +20,7 @@ export class CreateRetreatSceneTest extends SceneTest {
 
     @Test('On leave replay with sticker')
     public async leaveTest(): Promise<void> {
-        this.checkMethodMetadata(this.scene.onSceneLeave, [{ method: MethodName.SceneLeave, args: [] }])
+        this.checkMethodMetadata(this.scene.onSceneLeave, [{ method: MethodName.SceneLeave, args: [] }]);
 
         await this.scene.onSceneLeave(this.context);
         this.checkReplyMessage('Bye Bye 👋');

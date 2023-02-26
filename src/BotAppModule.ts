@@ -2,7 +2,7 @@ import { TelegrafModule } from 'nestjs-telegraf';
 import { Module } from '@nestjs/common';
 import RedisSession  from 'telegraf-session-redis';
 
-import { BotModule } from '@bot/BotModule';
+import { BotModule } from '@retreat/BotModule';
 import { Config } from '@core/config/Config';
 import { ConfigName, RedisConfig } from '@core/config/types';
 
@@ -12,7 +12,7 @@ const session = new RedisSession({
     store: {
         host: redisConfig.host,
         port: redisConfig.port,
-    }
+    },
 });
 
 @Module({

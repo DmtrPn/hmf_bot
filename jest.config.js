@@ -25,7 +25,7 @@ module.exports = {
         '^@common/(.*)': '<rootDir>/dist/components/common/$1',
         '^@core/(.*)': '<rootDir>/dist/core/$1',
         '^@utils/(.*)': '<rootDir>/dist/core/utils/$1',
-        '^@bot/(.*)': '<rootDir>/dist/modules/bot/$1',
+        '^@retreat/(.*)': '<rootDir>/dist/modules/retreat/$1',
         '^@project-types/(.*)': '<rootDir>/dist/types/$1',
     },
     setupFilesAfterEnv: [
