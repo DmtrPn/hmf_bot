@@ -20,7 +20,7 @@
     "migrate:undo": "ts-node src/bin/db/migrations:undo.ts",
     "test:u": "NODE_ENV=mock jest --detectOpenHandles .*.test.ts",
     "test:i": "NODE_ENV=test jest --detectOpenHandles .*.spec.ts",
-    "test": "yatn db:init:test && yarn test:u && yarn test:i"
+    "test": "yarn db:init:test && yarn test:u && yarn test:i"
   },
   "dependencies": {
     "@amplitude/node": "1.10.0",

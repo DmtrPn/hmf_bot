@@ -7,6 +7,7 @@ import { Context } from '@core/types';
 import { createUser } from '../use-case/user/UserCreateCommand';
 
 import { SceneName } from './types';
+import { isDefined } from '@utils/isDefined';
 
 @Update()
 export class StartScene {
@@ -14,13 +15,14 @@ export class StartScene {
     @Start()
     public async start(@Ctx() ctx: Context) {
         this.logEvent(ctx, BotAuditEventType.Start);
-        const a = await ctx.getChat();
-        await createUser({
-            id: uuid(),
-            chatId: a.id,
-            firstName: 'a.first_name',
-            lastName: 'a.last_name',
-        });
+        if (isDefined(ctx.from)) {
+            await createUser({
+                id: uuid(),
+                chatId: ctx.from.id,
+                firstName: ctx.from.first_name,
+                lastName: ctx.from.last_name || '',
+            });
+        }
         await ctx.scene.enter(SceneName.Main);
     }
 
