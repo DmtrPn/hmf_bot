@@ -1,6 +1,7 @@
 import { Context as TelegramContext, Telegram } from 'telegraf';
 
 import { MockContext } from './types';
+import { FakeParams } from './FakeParams';
 
 export function makeMockContext(update: object = {}, contextExtra = {}): MockContext {
     const tg = new Telegram('', {});
@@ -34,6 +35,14 @@ export function makeMockContext(update: object = {}, contextExtra = {}): MockCon
         // @ts-ignore
         leave: () => { ctx.debug.currentScene = ''; },
     };
+
+    // @ts-ignore
+    ctx.getChat = () => ({
+        id: FakeParams.getId(),
+        chatId: FakeParams.getInteger(),
+        firstName: FakeParams.getName(),
+        lastName: FakeParams.getName(),
+    });
 
     return ctx;
 }

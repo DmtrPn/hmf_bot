@@ -32,8 +32,7 @@ export class CreateRetreatScene {
     @Message('text') reversedText: string,
     ) {
         const result = DateHelper.createDate(reversedText, DateFormat.DateWithDotSeparator);
-        const chat = await ctx.getChat();
-        console.log('ctx', chat);
+
         if (result.toString() === 'Invalid Date') {
             await ctx.reply('Введите дату начала в формате ДД.ММ.ГГГГ \nПример: 01.08.2034');
         } else if (DateHelper.isBefore(result, new Date())) {

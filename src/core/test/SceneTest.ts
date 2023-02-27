@@ -1,4 +1,4 @@
-import '@core/di/mockIoC';
+import './unitTestRanner';
 import orderBy from 'lodash/orderBy';
 
 import { makeMockContext } from './mockContext';
