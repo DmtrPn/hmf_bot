@@ -9,24 +9,34 @@ import { sendNotifications } from '../SendNotificationsCommand';
 import { createFakeUser } from '../../user/test/utils/createFakeUser';
 import { createFakeRetreat } from '../../retreat/test/utils/createFakeRetreat';
 import { getFakeNotificationCreationParams } from './utils/notificationFakeData';
+import { DateHelper } from '@utils/DateHelper';
 
-@Describe()
+@Describe.only()
 export class SendNotificationsSpec {
-    @Inject protected crudService!: INotificationCrudService;
+    @Inject private crudService!: INotificationCrudService;
 
     @Test('Send notification')
-    public async createTest(): Promise<void> {
-        const { id } = await this.createFakeNotification();
+    public async sendNotification(): Promise<void> {
+        const { id } = await this.createFakeNotification({ executeAt: DateHelper.subMinutes(new Date(), 5)});
         await sendNotifications();
         const notification = await this.crudService.getById(id);
 
         expect(notification.status).toEqual(NotificationStatus.Executed);
     }
 
-    private async createFakeNotification(): Promise<NotificationCreateData> {
+    @Test('Dont send future notification')
+    public async sendFutureNotification(): Promise<void> {
+        const { id } = await this.createFakeNotification({ executeAt: DateHelper.addDays(new Date(), 7) });
+        await sendNotifications();
+        const notification = await this.crudService.getById(id);
+
+        expect(notification.status).toEqual(NotificationStatus.Active);
+    }
+
+    private async createFakeNotification(params: Partial<NotificationCreateData> = {}): Promise<NotificationCreateData> {
         const { id: userId, chatId } = await createFakeUser();
         const { id: retreatId } = await createFakeRetreat({ userId });
-        const notification = getFakeNotificationCreationParams({ retreatId, chatId });
+        const notification = getFakeNotificationCreationParams({ retreatId, chatId, ...params });
 
         await this.crudService.create(notification);
 

@@ -8,6 +8,7 @@ export enum NotificationStatus {
 
 export interface NotificationFindOptions extends BaseFindOptions {
     status?: NotificationStatus | NotificationStatus[];
+    executeBefore?: Date;
 }
 
 export interface NotificationCreateData {

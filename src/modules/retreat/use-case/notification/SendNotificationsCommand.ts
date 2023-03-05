@@ -12,7 +12,10 @@ export class SendNotificationsCommand extends NotificationCommand<{}> {
     }
 
     private async getActualNotifications(): Promise<NotificationModel[]> {
-        return this.crudService.find({ status: NotificationStatus.Active });
+        return this.crudService.find({
+            status: NotificationStatus.Active,
+            executeBefore: new Date(),
+        });
     }
 
 }

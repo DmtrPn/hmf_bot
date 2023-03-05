@@ -7,6 +7,7 @@ export class NotificationFindCommand extends FindCommand<NotificationModel, Noti
 
     private id?: NotificationFindOptions['id'];
     private status?: NotificationFindOptions['status'];
+    private executeBefore?: NotificationFindOptions['executeBefore'];
 
     constructor(options: NotificationFindOptions) {
         super(options, NotificationModel);
@@ -14,6 +15,14 @@ export class NotificationFindCommand extends FindCommand<NotificationModel, Noti
 
     protected override addFilters(): this {
         return this.filterBy('id', this.id)
-            .filterBy('status', this.status);
+            .filterBy('status', this.status)
+            .filterByExecuteBefore();
+    }
+
+    protected filterByExecuteBefore(): this {
+        if (!!this.executeBefore) {
+            this.qb.andWhere(`execute_at <= :executeBefore`, { executeBefore: this.executeBefore })
+        }
+        return this;
     }
 }

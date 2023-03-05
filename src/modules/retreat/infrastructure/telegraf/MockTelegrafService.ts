@@ -1,4 +1,4 @@
-import { ITelegrafService } from '../../domain/telegraf/ITelegrafService';
+import { ITelegrafService } from '@retreat/domain/telegraf/ITelegrafService';
 
 export class MockTelegrafService implements ITelegrafService {
 

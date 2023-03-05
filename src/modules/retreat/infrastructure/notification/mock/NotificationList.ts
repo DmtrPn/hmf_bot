@@ -15,9 +15,10 @@ export class NotificationList extends List<NotificationModel, NotificationCreate
         });
     }
 
-    protected override filterValue(value: NotificationModel, { id, status }: NotificationFindOptions): boolean {
+    protected override filterValue(value: NotificationModel, { id, status, executeBefore }: NotificationFindOptions): boolean {
         return this.filterFieldValueByArray(value, id, 'id')
-            && this.filterFieldValue(value, status, 'status');
+            && this.filterFieldValue(value, status, 'status')
+            && this.filterFieldValueByBeforeDate(value, executeBefore, 'executeAt');
     }
 
 }

@@ -1,6 +1,6 @@
 import { Telegraf } from 'telegraf';
 import { TelegrafBot } from '@components/TelegrafBot/TelegrafBot';
-import { ITelegrafService } from '../../domain/telegraf/ITelegrafService';
+import { ITelegrafService } from '@retreat/domain/telegraf/ITelegrafService';
 
 export class TelegrafService implements ITelegrafService {
 
