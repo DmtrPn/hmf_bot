@@ -1,6 +1,7 @@
 import { TelegrafModule } from 'nestjs-telegraf';
 import { Module } from '@nestjs/common';
 import RedisSession  from 'telegraf-session-redis';
+import { ScheduleModule } from '@nestjs/schedule';
 
 import { BotModule } from '@retreat/BotModule';
 import { Config } from '@core/config/Config';
@@ -17,6 +18,7 @@ const session = new RedisSession({
 
 @Module({
     imports: [
+        ScheduleModule.forRoot(),
         TelegrafModule.forRoot({
             token: process.env.TB_TOKEN!,
             middlewares: [session],
