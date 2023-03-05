@@ -94,7 +94,7 @@ export abstract class List<
         return compact(ids.map(id => this.get(id)));
     }
 
-    public forEach(callbackfn: (value: ListParams, key: I) => void, thisArg?: any): void {
+    public forEach(callbackfn: (value: ListParams, key: I) => void, _?: any): void {
         this.list.forEach(callbackfn);
     }
 
@@ -181,6 +181,7 @@ export abstract class List<
         return params;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     protected filterValue(value: ListParams, filterParams: FilterParams): boolean {
         return true;
     }
@@ -209,7 +210,7 @@ export abstract class List<
 
     protected filterArrayFieldValueByArray(value: ListParams, filterValue: Optional<any[]>, fieldName: keyof ListParams): boolean {
         const filterValuesSet = isDefined(filterValue) ? new Set(filterValue) : undefined;
-        return isDefined(filterValuesSet) ? (value[fieldName] as unknown as any[]).some(value => filterValuesSet.has(value)) : true;
+        return isDefined(filterValuesSet) ? (value[fieldName] as unknown as any[]).some(item => filterValuesSet.has(item)) : true;
     }
 
     protected filterFieldValueIncludesString(value: ListParams, filterValue: Optional<string>, fieldName: keyof ListParams): boolean {

@@ -3,7 +3,7 @@ import { DomainError } from './DomainError';
 export interface ExistenceErrorParams {
     entityName?: string
     endOfMessage?: string
-};
+}
 
 export abstract class ExistenceError<T extends ExistenceErrorParams> extends DomainError<T> {
 

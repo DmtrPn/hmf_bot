@@ -4,12 +4,12 @@ import { UserModel } from '../UserModel';
 
 export class UserList extends List<UserModel, UserCreateData, UserFindOptions> {
     protected create(params: UserCreateData): UserModel {
-        return new UserModel(params);;
+        return new UserModel(params);
     }
 
     protected override filterValue(value: UserModel, { id, chatId }: UserFindOptions): boolean {
         return this.filterFieldValueByArray(value, id, 'id')
-            && this.filterFieldValue(value, chatId, 'chatId')
+            && this.filterFieldValue(value, chatId, 'chatId');
     }
 
 }
