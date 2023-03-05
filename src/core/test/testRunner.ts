@@ -1,5 +1,5 @@
 import { DbConnector } from '@core/db-connector/DbConnector';
-import '@core/di/IoC';
+import '@core/di/testIoC';
 
 const dbConnector = DbConnector.getInstance();
 

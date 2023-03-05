@@ -1,5 +1,5 @@
-import '@core/di/IoC';
 import { Inject } from 'typescript-ioc';
+
 import '@core/test/testRunner';
 
 import { IUserCrudService } from '@retreat/domain/user/IUserCrudService';
