@@ -1,18 +1,18 @@
-import { Inject } from 'typescript-ioc';
+import { NotificationModel } from '@retreat/infrastructure/notification/NotificationModel';
+import { NotificationStatus } from '@retreat/domain/notification/types';
 
-import { UseCaseCommand } from '@common/use-cases/UseCaseCommand';
-import { ITelegrafService } from '../../domain/telegraf/ITelegrafService';
+import { sendNotification } from './SendNotificationCommand';
+import { NotificationCommand } from './NotificationCommand';
 
-export class SendNotificationsCommand extends UseCaseCommand<{}> {
-
-    @Inject protected telegrafService!: ITelegrafService;
+export class SendNotificationsCommand extends NotificationCommand<{}> {
 
     public async execute(): Promise<void> {
-        // console.log('send message');
-        // const app = new Telegraf(process.env.BOT_TOKEN!);
-        // console.log('app', app);
-        // console.log('app.telegram.sendMessage', app.telegram.sendMessage);
-        // this.telegrafBot.telegram.sendMessage()
+        const actualNotifications = await this.getActualNotifications();
+        await Promise.all(actualNotifications.map(model => sendNotification(model)));
+    }
+
+    private async getActualNotifications(): Promise<NotificationModel[]> {
+        return this.crudService.find({ status: NotificationStatus.Active });
     }
 
 }

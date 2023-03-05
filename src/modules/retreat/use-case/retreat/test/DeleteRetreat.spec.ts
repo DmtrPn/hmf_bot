@@ -19,7 +19,8 @@ export class DaleteRetreatSpec {
 
     @BeforeAll()
     public async beforeAll(): Promise<void> {
-        this.userId = await createFakeUser();
+        const user = await createFakeUser();
+        this.userId = user.id;
     }
 
     @Test('Delete retreat test')

@@ -17,7 +17,8 @@ export class CreateRetreatSpec {
 
     @BeforeAll()
     public async beforeAll(): Promise<void> {
-        this.userId = await createFakeUser();
+        const user = await createFakeUser();
+        this.userId = user.id;
     }
 
     @Test('Create retreat test')
