@@ -8,8 +8,10 @@ import { ITelegrafService } from '@retreat/domain/telegraf/ITelegrafService';
 import { MockTelegrafService } from '@retreat/infrastructure/telegraf/MockTelegrafService';
 import { IRetreatCrudService } from '@retreat/domain/retreat/IRetreatCrudService';
 import { MockNotificationCrudService } from '@retreat/infrastructure/notification/mock/MockNotificationCrudService';
+import { EventEmitter, IEventEmitter } from '@events/EventEmitter';
 
 Container.bind(IUserCrudService).to(MockUserCrudService);
 Container.bind(IRetreatCrudService).to(MockRetreatCrudService);
 Container.bind(INotificationCrudService).to(MockNotificationCrudService);
 Container.bind(ITelegrafService).to(MockTelegrafService);
+Container.bind(IEventEmitter).to(EventEmitter);

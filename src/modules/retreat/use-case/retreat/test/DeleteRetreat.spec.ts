@@ -13,7 +13,7 @@ import { getFakeRetreatCreationParams } from './utils/retreatFakeData';
 import { createFakeUser } from '../../user/test/utils/createFakeUser';
 
 @Describe()
-export class DaleteRetreatSpec {
+export class DeleteRetreatSpec {
     @Inject protected crudService!: IRetreatCrudService;
     private chatId!: number;
 

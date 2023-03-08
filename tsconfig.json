@@ -28,6 +28,7 @@
     "resolveJsonModule": true,
     "paths": {
       "@core/*": ["core/*"],
+      "@events/*": ["events/*"],
       "@utils/*": ["core/utils/*"],
       "@common/*": ["components/common/*"],
       "@components/*": ["components/*"],
