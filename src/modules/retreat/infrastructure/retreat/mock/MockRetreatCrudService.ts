@@ -1,4 +1,5 @@
 import { Singleton } from 'typescript-ioc';
+import castArray from 'lodash/castArray';
 
 import type { IRetreatCrudService } from '@retreat/domain/retreat/IRetreatCrudService';
 import { RetreatCreateData, RetreatFindOptions, RetreatUpdateData } from '@retreat/domain/retreat/types';
@@ -11,8 +12,8 @@ import { MockCrudService } from '@core/test/abstract/MockCrudService';
 export class MockRetreatCrudService extends MockCrudService implements IRetreatCrudService {
     private list = new RetreatList();
 
-    public create(params: RetreatCreateData): void {
-        this.list.add([params]);
+    public create(params: RetreatCreateData | RetreatCreateData[]): void {
+        this.list.add(castArray(params));
     }
 
     public find(options: RetreatFindOptions): Promise<RetreatModel[]> {

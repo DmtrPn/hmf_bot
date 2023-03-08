@@ -12,7 +12,7 @@ import { createFakeUser } from '../../user/test/utils/createFakeUser';
 import { IEventEmitter } from '@events/EventEmitter';
 import { CreateRetreatEvent } from '@events/retreat/CreateRetreatEvent';
 
-@Describe.only()
+@Describe()
 export class CreateRetreatSpec {
     @Inject protected eventEmitter!: IEventEmitter;
     @Inject protected crudService!: IRetreatCrudService;

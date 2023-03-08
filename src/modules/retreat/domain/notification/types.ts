@@ -7,6 +7,7 @@ export enum NotificationStatus {
 }
 
 export interface NotificationFindOptions extends BaseFindOptions {
+    retreatId?: string;
     status?: NotificationStatus | NotificationStatus[];
     executeBefore?: Date;
 }

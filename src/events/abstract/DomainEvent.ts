@@ -1,13 +1,11 @@
-interface Params<P> {
-    payload: P;
+interface Params<B> {
+    body: B;
 }
 
-export abstract class DomainEvent<P> {
-    // public abstract static Name: string;
+export abstract class DomainEvent<B> {
+    public body: B;
 
-    public payload: P;
-
-    public constructor({ payload }: Params<P>) {
-        this.payload = payload;
+    public constructor({ body }: Params<B>) {
+        this.body = body;
     }
 }

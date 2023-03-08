@@ -1,4 +1,5 @@
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
+import castArray from 'lodash/castArray';
 
 import { Class, Attributes } from '@project-types/common';
 
@@ -19,8 +20,8 @@ export abstract class CrudService<
         return command.execute();
     }
 
-    public async create(params: CreationParams): Promise<void> {
-        const theParams = this.enrichCreationParams(params);
+    public async create(params: CreationParams | CreationParams[]): Promise<void> {
+        const theParams = castArray(params).map(createParams => this.enrichCreationParams(createParams));
 
         await this.executeInTransaction(entityManager =>
             entityManager.createQueryBuilder().insert().into(this.modelClass).values(theParams).execute(),

@@ -2,8 +2,8 @@ import { RetreatCreateData } from '@retreat/domain/retreat/types';
 
 import { DomainEvent } from '../abstract/DomainEvent';
 
-export interface CreateRetreatEventPayload extends RetreatCreateData {}
+export interface CreateRetreatEventBody extends RetreatCreateData {}
 
-export class CreateRetreatEvent extends DomainEvent<CreateRetreatEventPayload> {
+export class CreateRetreatEvent extends DomainEvent<CreateRetreatEventBody> {
     public static Name = 'retreat.created';
 }

@@ -1,4 +1,5 @@
 import { Singleton } from 'typescript-ioc';
+import castArray from 'lodash/castArray';
 
 import type { INotificationCrudService } from '@retreat/domain/notification/INotificationCrudService';
 import {
@@ -14,8 +15,8 @@ import { NotificationList } from './NotificationList';
 export class MockNotificationCrudService implements INotificationCrudService {
     private list = new NotificationList();
 
-    public create(params: NotificationCreateData): void {
-        this.list.add([params]);
+    public create(params: NotificationCreateData | NotificationCreateData[]): void {
+        this.list.add(castArray(params));
     }
 
     public find(options: NotificationFindOptions): Promise<NotificationModel[]> {

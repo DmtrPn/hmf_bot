@@ -4,6 +4,16 @@ export enum ConfigName {
     Log = 'log',
     Db = 'db',
     Redis = 'redis',
+    Notification = 'notification',
+}
+
+export interface NotificationConfig {
+    retreatMessages: {
+        message: string;
+        hour: number;
+        minutes: number;
+        isPreviousDay?: boolean;
+    }[];
 }
 
 export interface RedisConfig {
@@ -22,4 +32,4 @@ export interface DbConfig extends PostgresConnectionOptions {
     password: string;
 }
 
-export type ConfigType = DbConfig | RedisConfig;
+export type ConfigType = DbConfig | RedisConfig | NotificationConfig;

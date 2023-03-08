@@ -209,7 +209,13 @@ export class DateHelper {
 
     public static setDate(
         value: DateType,
-        { year, month, day }: { year?: number; month?: number; day?: number },
+        {
+            year,
+            month,
+            day,
+            hour,
+            minutes,
+        }: { year?: number; month?: number; day?: number; hour?: number; minutes?: number },
     ): Date {
         const date = new Date(value);
 
@@ -221,6 +227,12 @@ export class DateHelper {
         }
         if (!isNil(month)) {
             date.setMonth(month);
+        }
+        if (!isNil(hour)) {
+            date.setHours(hour);
+        }
+        if (!isNil(minutes)) {
+            date.setMinutes(minutes);
         }
 
         return date;

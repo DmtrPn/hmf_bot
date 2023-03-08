@@ -14,7 +14,7 @@ export class RetreatCreateCommand extends RetreatCommand<Params> {
         }
         await this.crudService.create(this.params);
 
-        const event = new CreateRetreatEvent({ payload: this.params });
+        const event = new CreateRetreatEvent({ body: this.params });
         this.eventEmitter.emit(CreateRetreatEvent.Name, event);
     }
 }
