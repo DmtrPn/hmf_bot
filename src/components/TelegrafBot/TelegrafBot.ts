@@ -13,5 +13,4 @@ export class TelegrafBot {
 
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     private constructor() {}
-
 }

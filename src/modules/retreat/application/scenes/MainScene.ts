@@ -7,10 +7,7 @@ import { Context } from '@core/types';
 export class MainScene {
     @SceneEnter()
     public async onSceneEnter(ctx: Context) {
-        await ctx.reply(
-            'Добро пожаловать',
-            Markup.keyboard([['🌺Начать ретрит']]).resize(),
-        );
+        await ctx.reply('Добро пожаловать', Markup.keyboard([['🌺Начать ретрит']]).resize());
     }
 
     @SceneLeave()
@@ -28,9 +25,7 @@ export class MainScene {
     public async onText(@Ctx() ctx: Context) {
         await ctx.reply(
             'Жизнь неожиданна прекрасна',
-            Markup.inlineKeyboard([
-                Markup.button.callback('🌺Начать ретрит', 'startRetreat'),
-            ]),
+            Markup.inlineKeyboard([Markup.button.callback('🌺Начать ретрит', 'startRetreat')]),
         );
     }
 }

@@ -10,13 +10,12 @@ import { RetreatFindCommand } from './RetreatFindCommand';
 
 export class RetreatCrudService
     extends IdentityCrudService<RetreatModel, RetreatCreateData, RetreatUpdateData, RetreatFindOptions>
-    implements IRetreatCrudService {
-
+    implements IRetreatCrudService
+{
     protected modelClass = RetreatModel;
     protected findCommand: Class<FindCommand<RetreatModel, RetreatFindOptions>, any> = RetreatFindCommand;
 
     protected enrichCreationParams(params: RetreatCreateData): RetreatModel {
         return new RetreatModel(params);
     }
-
 }

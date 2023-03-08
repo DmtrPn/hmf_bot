@@ -3,7 +3,6 @@ import { UserModel } from './UserModel';
 import { UserFindOptions } from '@retreat/domain/user/types';
 
 export class UserFindCommand extends FindCommand<UserModel, UserFindOptions> {
-
     private id?: UserFindOptions['id'];
     private chatId?: UserFindOptions['chatId'];
 
@@ -12,7 +11,6 @@ export class UserFindCommand extends FindCommand<UserModel, UserFindOptions> {
     }
 
     protected override addFilters(): this {
-        return this.filterBy('id', this.id)
-            .filterBy('chatId', this.chatId);
+        return this.filterBy('id', this.id).filterBy('chatId', this.chatId);
     }
 }

@@ -4,7 +4,6 @@ import { BaseModel } from '@common/infrastructure/BaseModel';
 
 @Entity('retreat')
 export class RetreatModel extends BaseModel<RetreatModel> {
-
     @PrimaryColumn({ name: 'retreat_id' })
     public id!: string;
 
@@ -13,5 +12,4 @@ export class RetreatModel extends BaseModel<RetreatModel> {
 
     @Column()
     public startDate!: Date;
-
 }

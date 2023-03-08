@@ -27,10 +27,7 @@ export class CreateRetreatScene {
     }
 
     @On('text')
-    public async setStartDate(
-    @Ctx() ctx: Context,
-    @Message('text') reversedText: string,
-    ) {
+    public async setStartDate(@Ctx() ctx: Context, @Message('text') reversedText: string) {
         const result = DateHelper.createDate(reversedText, DateFormat.DateWithDotSeparator);
 
         if (result.toString() === 'Invalid Date') {
@@ -40,7 +37,5 @@ export class CreateRetreatScene {
         } else {
             await ctx.reply(`${reversedText} придет напонминаие!`);
         }
-
     }
-
 }

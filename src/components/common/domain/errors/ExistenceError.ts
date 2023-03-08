@@ -1,12 +1,11 @@
 import { DomainError } from './DomainError';
 
 export interface ExistenceErrorParams {
-    entityName?: string
-    endOfMessage?: string
+    entityName?: string;
+    endOfMessage?: string;
 }
 
 export abstract class ExistenceError<T extends ExistenceErrorParams> extends DomainError<T> {
-
     protected override createMessage({
         entityName = 'Entity',
         endOfMessage = this.defaultEndOfMessage,
@@ -20,5 +19,4 @@ export abstract class ExistenceError<T extends ExistenceErrorParams> extends Dom
     }
 
     protected abstract defaultEndOfMessage: string;
-
 }

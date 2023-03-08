@@ -7,7 +7,6 @@ import { ConfigName, DbConfig } from '@core/config/types';
 import { LoggerFactory } from '@components/logging/LoggerFactory';
 
 export class DbConnector {
-
     private static instance: DbConnector;
 
     public static getInstance(): DbConnector {
@@ -46,14 +45,15 @@ export class DbConnector {
     public async initialize(): Promise<void> {
         if (!this.dataSource.isInitialized) {
             await this.createConnection()
-                .then((connection) => {
+                .then(connection => {
                     if (connection.isInitialized) {
-                        this.logger.info(`Connection to the database: ${ connection.options.database } is established`);
+                        this.logger.info(`Connection to the database: ${connection.options.database} is established`);
                     } else {
-                        this.logger.error(`Connection to the database: ${ connection.options.database } is not established`);
+                        this.logger.error(
+                            `Connection to the database: ${connection.options.database} is not established`,
+                        );
                     }
                     this.dataSource = connection;
-
                 })
                 .catch(error => this.logger.fatal(error));
         }

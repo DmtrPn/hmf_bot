@@ -9,19 +9,20 @@ module.exports = {
     },
     extends: [
         'airbnb-typescript/base',
+        'prettier',
     ],
     rules: {
         'indent': 'off',
-        '@typescript-eslint/indent': [
-            'error',
-            4,
-            {
-                SwitchCase: 1,
-                FunctionExpression: {
-                    parameters: 0,
-                },
-            }
-        ],
+        // '@typescript-eslint/indent': [
+        //     'error',
+        //     4,
+        //     {
+        //         SwitchCase: 1,
+        //         FunctionExpression: {
+        //             parameters: 0,
+        //         },
+        //     }
+        // ],
         'react/jsx-filename-extension': 0,
         'import/extensions': 0,
         'import/no-extraneous-dependencies': 0,

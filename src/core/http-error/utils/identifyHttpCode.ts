@@ -8,8 +8,8 @@ export const identifyHttpCode = (error: unknown): number => {
 
     if (error instanceof CoreHttpError) {
         code = error.code;
-    } else if (!isUndefined(((error as any) as BodyParserError).status)) {
-        code = ((error as any) as BodyParserError).status;
+    } else if (!isUndefined((error as any as BodyParserError).status)) {
+        code = (error as any as BodyParserError).status;
     } else if (!isUndefined(error as any) && !!(error as any).statusCode) {
         code = (error as any).statusCode;
     }

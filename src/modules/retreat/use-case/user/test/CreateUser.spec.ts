@@ -30,5 +30,4 @@ export class CreateUserSpec {
         await createUser(params);
         await createUser(params);
     }
-
 }

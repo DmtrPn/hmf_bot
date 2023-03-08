@@ -5,12 +5,11 @@ import { SceneName } from '../../types';
 
 @Describe('Main scene')
 export class MainSceneTest extends SceneTest {
-
     private scene = new MainScene();
 
     @Test('On enter show start button and welcome message')
     public async retreatCreate(): Promise<any> {
-        this.checkMethodMetadata(this.scene.onSceneEnter,  [ { method: MethodName.SceneEnter, args: [] } ]);
+        this.checkMethodMetadata(this.scene.onSceneEnter, [{ method: MethodName.SceneEnter, args: [] }]);
 
         await this.scene.onSceneEnter(this.context as any);
 
@@ -43,10 +42,14 @@ export class MainSceneTest extends SceneTest {
 
         await this.scene.onText(this.context);
         this.checkReplyMessage('Жизнь неожиданна прекрасна');
-        this.checkReplyInlineKeyboard([[{
-            text: '🌺Начать ретрит',
-            callback_data: 'startRetreat',
-            hide: false,
-        }]]);
+        this.checkReplyInlineKeyboard([
+            [
+                {
+                    text: '🌺Начать ретрит',
+                    callback_data: 'startRetreat',
+                    hide: false,
+                },
+            ],
+        ]);
     }
 }

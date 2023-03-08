@@ -43,19 +43,15 @@ export interface OrderParams {
     order: SortingOrder;
 }
 
-export abstract class List<
-    ListParams,
-    CreateParams,
-    FilterParams = null,
-    I = string,
-> implements IList<ListParams, CreateParams, FilterParams, I> {
-
+export abstract class List<ListParams, CreateParams, FilterParams = null, I = string>
+    implements IList<ListParams, CreateParams, FilterParams, I>
+{
     protected readonly identifiableFieldName: string = 'id';
 
     protected filterParams: FilterParams = {} as FilterParams;
     protected orderParams: OrderParams = {} as OrderParams;
     protected list: Map<I, ListParams> = new Map();
-    
+
     private isSetted = false;
 
     constructor(params?: CreateParams[]) {
@@ -162,7 +158,7 @@ export abstract class List<
     }
 
     public setOrderParams(params: OrderParams): void {
-        this.orderParams = params || {} as OrderParams;
+        this.orderParams = params || ({} as OrderParams);
     }
 
     public hasFilteredValues(filterParams: FilterParams): boolean {
@@ -196,39 +192,78 @@ export abstract class List<
         return isDefined(filterValue) ? value[fieldName] === filterValue : true;
     }
 
-    protected filterExecuteFieldValue(value: ListParams, executeValue: Optional<any>, fieldName: keyof ListParams): boolean {
+    protected filterExecuteFieldValue(
+        value: ListParams,
+        executeValue: Optional<any>,
+        fieldName: keyof ListParams,
+    ): boolean {
         return isDefined(executeValue) ? value[fieldName] !== executeValue : true;
     }
 
-    protected filterFieldValueByArray(value: ListParams, filterValue: Optional<any[]>, fieldName: keyof ListParams): boolean {
+    protected filterFieldValueByArray(
+        value: ListParams,
+        filterValue: Optional<any[]>,
+        fieldName: keyof ListParams,
+    ): boolean {
         return isDefined(filterValue) ? filterValue.includes(value[fieldName]) : true;
     }
 
-    protected filterArrayFieldValue(value: ListParams, filterValue: Optional<any>, fieldName: keyof ListParams): boolean {
+    protected filterArrayFieldValue(
+        value: ListParams,
+        filterValue: Optional<any>,
+        fieldName: keyof ListParams,
+    ): boolean {
         return isDefined(filterValue) ? (value[fieldName] as unknown as any[]).includes(filterValue) : true;
     }
 
-    protected filterArrayFieldValueByArray(value: ListParams, filterValue: Optional<any[]>, fieldName: keyof ListParams): boolean {
+    protected filterArrayFieldValueByArray(
+        value: ListParams,
+        filterValue: Optional<any[]>,
+        fieldName: keyof ListParams,
+    ): boolean {
         const filterValuesSet = isDefined(filterValue) ? new Set(filterValue) : undefined;
-        return isDefined(filterValuesSet) ? (value[fieldName] as unknown as any[]).some(item => filterValuesSet.has(item)) : true;
-    }
-
-    protected filterFieldValueIncludesString(value: ListParams, filterValue: Optional<string>, fieldName: keyof ListParams): boolean {
-        return (isDefined(filterValue) && filterValue.length > 0)
-            ? (value[fieldName] as unknown  as string || '').toLocaleLowerCase().includes(filterValue.toLowerCase())
+        return isDefined(filterValuesSet)
+            ? (value[fieldName] as unknown as any[]).some(item => filterValuesSet.has(item))
             : true;
     }
 
-    protected filterFieldValueBySameDay(value: ListParams, filterValue: Optional<DateType>, fieldName: keyof ListParams): boolean {
-        return isDefined(filterValue) ? DateHelper.isSameDay(filterValue, value[fieldName] as unknown  as DateType) : true;
+    protected filterFieldValueIncludesString(
+        value: ListParams,
+        filterValue: Optional<string>,
+        fieldName: keyof ListParams,
+    ): boolean {
+        return isDefined(filterValue) && filterValue.length > 0
+            ? ((value[fieldName] as unknown as string) || '').toLocaleLowerCase().includes(filterValue.toLowerCase())
+            : true;
     }
 
-    protected filterFieldValueBySameOrAfterDate(value: ListParams, filterValue: Optional<DateType>, fieldName: keyof ListParams): boolean {
-        return isDefined(filterValue) ? DateHelper.isSameOrAfter(filterValue, value[fieldName] as unknown  as DateType) : true;
+    protected filterFieldValueBySameDay(
+        value: ListParams,
+        filterValue: Optional<DateType>,
+        fieldName: keyof ListParams,
+    ): boolean {
+        return isDefined(filterValue)
+            ? DateHelper.isSameDay(filterValue, value[fieldName] as unknown as DateType)
+            : true;
     }
 
-    protected filterFieldValueByBeforeDate(value: ListParams, filterValue: Optional<DateType>, fieldName: keyof ListParams): boolean {
-        return isDefined(filterValue) ? DateHelper.isBefore(filterValue, value[fieldName] as unknown  as DateType) : true;
+    protected filterFieldValueBySameOrAfterDate(
+        value: ListParams,
+        filterValue: Optional<DateType>,
+        fieldName: keyof ListParams,
+    ): boolean {
+        return isDefined(filterValue)
+            ? DateHelper.isSameOrAfter(filterValue, value[fieldName] as unknown as DateType)
+            : true;
     }
 
+    protected filterFieldValueByBeforeDate(
+        value: ListParams,
+        filterValue: Optional<DateType>,
+        fieldName: keyof ListParams,
+    ): boolean {
+        return isDefined(filterValue)
+            ? DateHelper.isBefore(filterValue, value[fieldName] as unknown as DateType)
+            : true;
+    }
 }

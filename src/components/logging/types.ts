@@ -1,4 +1,4 @@
-export interface LogConfig  {
+export interface LogConfig {
     main: LogCategoryConfig;
     access: LogCategoryConfig;
 }

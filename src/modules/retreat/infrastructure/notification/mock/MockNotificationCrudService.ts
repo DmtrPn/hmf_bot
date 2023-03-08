@@ -1,14 +1,17 @@
 import { Singleton } from 'typescript-ioc';
 
 import type { INotificationCrudService } from '@retreat/domain/notification/INotificationCrudService';
-import { NotificationCreateData, NotificationFindOptions, NotificationUpdateData } from '@retreat/domain/notification/types';
+import {
+    NotificationCreateData,
+    NotificationFindOptions,
+    NotificationUpdateData,
+} from '@retreat/domain/notification/types';
 
 import { NotificationModel } from '../NotificationModel';
 import { NotificationList } from './NotificationList';
 
 @Singleton
 export class MockNotificationCrudService implements INotificationCrudService {
-
     private list = new NotificationList();
 
     public create(params: NotificationCreateData): void {

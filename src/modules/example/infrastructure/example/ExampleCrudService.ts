@@ -10,13 +10,12 @@ import { FindCommand } from '@common/infrastructure/FindCommand';
 
 export class ExampleCrudService
     extends IdentityCrudService<ExampleModel, ExampleCreateData, ExampleUpdateData, ExampleFindOptions>
-    implements IExampleCrudService {
-
+    implements IExampleCrudService
+{
     protected modelClass = ExampleModel;
     protected findCommand: Class<FindCommand<ExampleModel, ExampleFindOptions>, any> = ExampleFindCommand;
 
     protected enrichCreationParams(params: ExampleCreateData): ExampleModel {
         return new ExampleModel({ ...params });
     }
-
 }

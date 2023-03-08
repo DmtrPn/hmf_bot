@@ -1,7 +1,6 @@
 import { assignParams } from '@utils/assignParams';
 
 export abstract class SerializableEntity<CP, UP, Dto> {
-
     constructor(params: CP) {
         this.checkCreateParams(params);
         this.setParams(params);
@@ -14,5 +13,4 @@ export abstract class SerializableEntity<CP, UP, Dto> {
     }
 
     protected checkCreateParams(params_: CP): void {}
-
 }

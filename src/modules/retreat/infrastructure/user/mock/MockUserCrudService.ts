@@ -8,7 +8,6 @@ import { UserList } from './UserList';
 
 @Singleton
 export class MockUserCrudService implements IUserCrudService {
-
     private list = new UserList();
 
     public create(params: UserCreateData): void {

@@ -6,7 +6,6 @@ import { ExecutionContext, CallHandler } from '@nestjs/common';
 const IS_PROD = ['prod', 'production'].includes(process.env.DOBRO_ENV!);
 
 export class LoggingInterceptor {
-
     private logger: Logger;
 
     constructor(logger: Logger) {
@@ -34,19 +33,25 @@ export class LoggingInterceptor {
                 this.logger.info(`${message} ${statusCode} ${additionalMessage} ${Date.now() - startTime}`);
             } else {
                 // tslint:disable-next-line:max-line-length
-                this.logger.info(`${message} statusCode: ${statusCode} ${additionalMessage} time: ${Date.now() - startTime} ms`);
+                this.logger.info(
+                    `${message} statusCode: ${statusCode} ${additionalMessage} time: ${Date.now() - startTime} ms`,
+                );
             }
             this.logger.debug(`Request-body: ${requestBody}`);
             this.logger.debug(`Response-body: ${JSON.stringify(responseData)}`);
         };
 
-        return next
-            .handle()
-            .pipe(tap(complete));
+        return next.handle().pipe(tap(complete));
     }
 
     protected getLogMessage(context: ExecutionContext): string {
-        const [{ url, method, connection: { remoteAddress } }] = context.getArgs();
+        const [
+            {
+                url,
+                method,
+                connection: { remoteAddress },
+            },
+        ] = context.getArgs();
         return `${remoteAddress} ${method} ${decodeURI(url)}`;
     }
 

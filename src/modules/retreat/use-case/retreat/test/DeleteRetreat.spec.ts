@@ -38,5 +38,4 @@ export class DaleteRetreatSpec {
     public async createRetreatWithExistIdTest(): Promise<void> {
         await deleteRetreat({ id: FakeParams.getId() });
     }
-
 }

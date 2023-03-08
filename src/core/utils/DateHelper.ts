@@ -68,13 +68,12 @@ export enum DateFormat {
 }
 
 export class DateHelper {
-
     public static createDate(value: string, dateFormat: DateFormat): Date {
         return parse(value, dateFormat.toString(), new Date());
     }
 
     public static getTime(date: DateType): string {
-        return (new Date(date)).toLocaleString('ru-RU', { hour: 'numeric', minute: 'numeric' });
+        return new Date(date).toLocaleString('ru-RU', { hour: 'numeric', minute: 'numeric' });
     }
 
     public static format(value: DateType, formatParams: DateFormat | DateFormatItem): string {
@@ -209,8 +208,8 @@ export class DateHelper {
     }
 
     public static setDate(
-    value: DateType,
-    { year, month, day }: { year?: number; month?: number; day?: number },
+        value: DateType,
+        { year, month, day }: { year?: number; month?: number; day?: number },
     ): Date {
         const date = new Date(value);
 
@@ -226,5 +225,4 @@ export class DateHelper {
 
         return date;
     }
-
 }

@@ -11,7 +11,6 @@ import { isDefined } from '@utils/isDefined';
 
 @Update()
 export class StartScene {
-
     @Start()
     public async start(@Ctx() ctx: Context) {
         this.logEvent(ctx, BotAuditEventType.Start);

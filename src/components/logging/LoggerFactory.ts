@@ -6,7 +6,6 @@ import { Config } from '@core/config/Config';
 import { ConfigName } from '@core/config/types';
 
 export class LoggerFactory {
-
     private static logger: log4js.Logger;
 
     public static getLogger(): log4js.Logger {
@@ -95,5 +94,4 @@ export class LoggerFactory {
 
         return appender;
     }
-
 }

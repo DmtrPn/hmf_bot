@@ -9,7 +9,6 @@ import { MockCrudService } from '@core/test/abstract/MockCrudService';
 
 @Singleton
 export class MockRetreatCrudService extends MockCrudService implements IRetreatCrudService {
-
     private list = new RetreatList();
 
     public create(params: RetreatCreateData): void {

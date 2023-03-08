@@ -7,7 +7,6 @@ interface EventData<ET> {
 }
 
 export abstract class IAuditLogService<ET> {
-
     protected abstract readonly apiKey: string;
     private client!: Amplitude.NodeClient;
 

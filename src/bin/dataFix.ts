@@ -5,7 +5,6 @@ import { commands } from './data-fix-scripts';
 import { DbConnector } from '@core/db-connector/DbConnector';
 
 async function dataFix(): Promise<void> {
-
     const dbConnector = DbConnector.getInstance();
     await dbConnector.initialize();
 
@@ -20,7 +19,6 @@ async function dataFix(): Promise<void> {
     } finally {
         await dbConnector.closeConnection();
     }
-
 }
 
 dataFix();

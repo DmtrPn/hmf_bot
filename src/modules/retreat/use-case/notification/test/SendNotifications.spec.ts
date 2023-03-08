@@ -35,7 +35,9 @@ export class SendNotificationsSpec {
         expect(notification!.status).toEqual(NotificationStatus.Active);
     }
 
-    private async createFakeNotification(params: Partial<NotificationCreateData> = {}): Promise<NotificationCreateData> {
+    private async createFakeNotification(
+        params: Partial<NotificationCreateData> = {},
+    ): Promise<NotificationCreateData> {
         const { id: userId, chatId } = await createFakeUser();
         const { id: retreatId } = await createFakeRetreat({ userId });
         const notification = getFakeNotificationCreationParams({ retreatId, chatId, ...params });

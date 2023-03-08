@@ -37,14 +37,20 @@ export function makeMockContext(update: object = {}, contextExtra = {}): MockCon
     );
 
     //  @ts-ignore
-    ctx.reply = (message, extra = undefined) => { ctx.debug.reply = { message, extra }; };
+    ctx.reply = (message, extra = undefined) => {
+        ctx.debug.reply = { message, extra };
+    };
 
     // @ts-ignore
     ctx.scene = {
         // @ts-ignore
-        enter: (sceneName) => { ctx.debug.currentScene = sceneName;},
+        enter: sceneName => {
+            ctx.debug.currentScene = sceneName;
+        },
         // @ts-ignore
-        leave: () => { ctx.debug.currentScene = ''; },
+        leave: () => {
+            ctx.debug.currentScene = '';
+        },
     };
 
     // @ts-ignore

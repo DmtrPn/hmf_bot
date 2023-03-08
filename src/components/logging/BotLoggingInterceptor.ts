@@ -6,7 +6,6 @@ import { ExecutionContext, CallHandler } from '@nestjs/common';
 // const IS_PROD = ['prod', 'production'].includes(process.env.DOBRO_ENV);
 
 export class BotLoggingInterceptor {
-
     private logger: Logger;
 
     constructor(logger: Logger) {
@@ -34,9 +33,7 @@ export class BotLoggingInterceptor {
             this.logger.debug(`Response-body: ${JSON.stringify(responseData)}`);
         };
 
-        return next
-            .handle()
-            .pipe(tap(complete));
+        return next.handle().pipe(tap(complete));
     }
 
     protected getLogMessage(context: ExecutionContext): string {
@@ -44,9 +41,7 @@ export class BotLoggingInterceptor {
 
         const message = update?.message ?? update?.callback_query?.message;
 
-        return !!message
-            ? `From ${message.from.username}`
-            : '-';
+        return !!message ? `From ${message.from.username}` : '-';
     }
 
     protected getAdditionalMessage(context: ExecutionContext): string {

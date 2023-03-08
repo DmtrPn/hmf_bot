@@ -7,7 +7,6 @@ interface IntegerOptions {
 }
 
 export class FakeParams {
-
     private static change = new Chance();
 
     public static getId(): string {
@@ -41,5 +40,4 @@ export class FakeParams {
     public static getDate(): Date {
         return this.change.birthday();
     }
-
 }

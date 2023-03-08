@@ -10,7 +10,6 @@ interface ColumnExistenceCheckingParams {
 }
 
 export abstract class DataFixCommand extends TransactionManager implements ICommand {
-
     protected scriptName = this.constructor.name;
 
     public async execute(): Promise<void> {
@@ -43,18 +42,22 @@ export abstract class DataFixCommand extends TransactionManager implements IComm
     }
 
     protected async areTablesExist(...tableNames: string[]): Promise<boolean> {
-        const names = `'${tableNames.join('\',\'')}'`;
-        const [{ count }] = await this.manager.query(`SELECT CAST(count(*) AS int) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME IN(${names})`);
+        const names = `'${tableNames.join("','")}'`;
+        const [{ count }] = await this.manager.query(
+            `SELECT CAST(count(*) AS int) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME IN(${names})`,
+        );
         return tableNames.length === count;
     }
 
     protected async getTableItemsCount(tableName: string): Promise<number> {
-        const [{ count }] = await this.manager.query(`SELECT CAST(count(*) AS int) FROM ${tableName}`) as { count: number }[];
+        const [{ count }] = (await this.manager.query(`SELECT CAST(count(*) AS int) FROM ${tableName}`)) as {
+            count: number;
+        }[];
         return count;
     }
 
     protected async isTableEmpty(tableName: string): Promise<boolean> {
-        const hasItems = await this.areTablesExist(tableName) && (await this.getTableItemsCount(tableName)) > 0;
+        const hasItems = (await this.areTablesExist(tableName)) && (await this.getTableItemsCount(tableName)) > 0;
         return !hasItems;
     }
 
@@ -67,5 +70,4 @@ export abstract class DataFixCommand extends TransactionManager implements IComm
         );
         return first(res as { result: boolean }[])!.result;
     }
-
 }

@@ -5,7 +5,6 @@ import { sendNotification } from './SendNotificationCommand';
 import { NotificationCommand } from './NotificationCommand';
 
 export class SendNotificationsCommand extends NotificationCommand<{}> {
-
     public async execute(): Promise<void> {
         const actualNotifications = await this.getActualNotifications();
         await Promise.all(actualNotifications.map(model => sendNotification(model)));
@@ -17,7 +16,6 @@ export class SendNotificationsCommand extends NotificationCommand<{}> {
             executeBefore: new Date(),
         });
     }
-
 }
 
-export const sendNotifications = () => (new SendNotificationsCommand({})).execute();
+export const sendNotifications = () => new SendNotificationsCommand({}).execute();

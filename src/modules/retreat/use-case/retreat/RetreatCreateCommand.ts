@@ -6,7 +6,6 @@ import { RetreatCommand } from './RetreatCommand';
 interface Params extends RetreatCreateData {}
 
 export class RetreatCreateCommand extends RetreatCommand<Params> {
-
     public async execute(): Promise<void> {
         const retreat = await this.crudService.getById(this.params.id);
 
@@ -15,7 +14,6 @@ export class RetreatCreateCommand extends RetreatCommand<Params> {
         }
         await this.crudService.create(this.params);
     }
-
 }
 
-export const createRetreat = (params: Params) => (new RetreatCreateCommand(params)).execute();
+export const createRetreat = (params: Params) => new RetreatCreateCommand(params).execute();

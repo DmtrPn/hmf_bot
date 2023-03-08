@@ -7,7 +7,6 @@ interface Params {
 }
 
 export class RetreatDeleteCommand extends RetreatCommand<Params> {
-
     public async execute(): Promise<void> {
         const retreat = await this.crudService.getById(this.params.id);
 
@@ -16,7 +15,6 @@ export class RetreatDeleteCommand extends RetreatCommand<Params> {
         }
         await this.crudService.remove(this.params.id);
     }
-
 }
 
-export const deleteRetreat = (params: Params) => (new RetreatDeleteCommand(params)).execute();
+export const deleteRetreat = (params: Params) => new RetreatDeleteCommand(params).execute();

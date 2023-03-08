@@ -14,18 +14,13 @@ interface Reply {
 }
 
 interface ExtraReply {
-    reply_markup?:
-    | InlineKeyboardMarkup
-    | ReplyKeyboardMarkup
-    | ReplyKeyboardRemove
-    | ForceReply;
+    reply_markup?: InlineKeyboardMarkup | ReplyKeyboardMarkup | ReplyKeyboardRemove | ForceReply;
 }
 
 export interface InlineKeyboardMarkupParams {
     text: string;
     callback_data: string;
     hide: boolean;
-
 }
 
 export interface InlineKeyboardMarkup {

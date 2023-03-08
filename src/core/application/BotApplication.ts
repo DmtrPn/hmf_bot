@@ -9,7 +9,6 @@ import { DbConnector } from '@core/db-connector/DbConnector';
 import { BotAppModule } from '../../BotAppModule';
 
 export class BotApplication {
-
     public app!: NestExpressApplication;
     private dbConnector = DbConnector.getInstance();
 

@@ -14,11 +14,17 @@ import { NotificationModel } from './NotificationModel';
 import { NotificationFindCommand } from './NotificationFindCommand';
 
 export class NotificationCrudService
-    extends IdentityCrudService<NotificationModel, NotificationCreateData, NotificationUpdateData, NotificationFindOptions>
-    implements INotificationCrudService {
-
+    extends IdentityCrudService<
+        NotificationModel,
+        NotificationCreateData,
+        NotificationUpdateData,
+        NotificationFindOptions
+    >
+    implements INotificationCrudService
+{
     protected modelClass = NotificationModel;
-    protected findCommand: Class<FindCommand<NotificationModel, NotificationFindOptions>, any> = NotificationFindCommand;
+    protected findCommand: Class<FindCommand<NotificationModel, NotificationFindOptions>, any> =
+        NotificationFindCommand;
 
     protected enrichCreationParams(params: NotificationCreateData): NotificationModel {
         return new NotificationModel({
@@ -26,5 +32,4 @@ export class NotificationCrudService
             status: NotificationStatus.Active,
         });
     }
-
 }

@@ -9,8 +9,6 @@ export class RetreatList extends List<RetreatModel, RetreatCreateData, RetreatFi
     }
 
     protected override filterValue(value: RetreatModel, { id, userId }: RetreatFindOptions): boolean {
-        return this.filterFieldValueByArray(value, id, 'id')
-            && this.filterFieldValue(value, userId, 'userId');
+        return this.filterFieldValueByArray(value, id, 'id') && this.filterFieldValue(value, userId, 'userId');
     }
-
 }

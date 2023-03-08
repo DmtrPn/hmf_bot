@@ -10,13 +10,12 @@ import { UserFindCommand } from './UserFindCommand';
 
 export class UserCrudService
     extends IdentityCrudService<UserModel, UserCreateData, UserUpdateData, UserFindOptions>
-    implements IUserCrudService {
-
+    implements IUserCrudService
+{
     protected modelClass = UserModel;
     protected findCommand: Class<FindCommand<UserModel, UserFindOptions>, any> = UserFindCommand;
 
     protected enrichCreationParams(params: UserCreateData): UserModel {
         return new UserModel(params);
     }
-
 }

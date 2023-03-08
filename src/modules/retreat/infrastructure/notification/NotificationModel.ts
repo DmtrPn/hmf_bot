@@ -5,7 +5,6 @@ import { NotificationStatus } from '@retreat/domain/notification/types';
 
 @Entity('notification')
 export class NotificationModel extends BaseModel<NotificationModel> {
-
     @PrimaryColumn({ name: 'notification_id' })
     public id!: string;
 
@@ -23,5 +22,4 @@ export class NotificationModel extends BaseModel<NotificationModel> {
 
     @Column()
     public executeAt!: Date;
-
 }

@@ -5,12 +5,11 @@ import { SceneName } from '../../types';
 
 @Describe('Create retreat scene')
 export class CreateRetreatSceneTest extends SceneTest {
-
     private scene = new CreateRetreatScene();
 
     @Test('On enter show back button and welcome message')
     public async retreatCreate(): Promise<any> {
-        this.checkMethodMetadata(this.scene.onSceneEnter,  [ { method: MethodName.SceneEnter, args: [] } ]);
+        this.checkMethodMetadata(this.scene.onSceneEnter, [{ method: MethodName.SceneEnter, args: [] }]);
 
         await this.scene.onSceneEnter(this.context as any);
 
@@ -39,9 +38,7 @@ export class CreateRetreatSceneTest extends SceneTest {
 
     @Test('Set retreat start date')
     public async setStartDate(): Promise<void> {
-        this.checkMethodMetadata(this.scene.setStartDate, [
-            { method: MethodName.On, args: ['text'] },
-        ]);
+        this.checkMethodMetadata(this.scene.setStartDate, [{ method: MethodName.On, args: ['text'] }]);
         const date = '02.01.2043';
         this.setMessageToContext(date);
         await this.scene.setStartDate(this.context, date);
@@ -51,9 +48,7 @@ export class CreateRetreatSceneTest extends SceneTest {
 
     @Test('Set wrong start date')
     public async setWrongStartDate(): Promise<void> {
-        this.checkMethodMetadata(this.scene.setStartDate, [
-            { method: MethodName.On, args: ['text'] },
-        ]);
+        this.checkMethodMetadata(this.scene.setStartDate, [{ method: MethodName.On, args: ['text'] }]);
 
         this.setMessageToContext('13.32.0911');
         await this.scene.setStartDate(this.context, '13.32.0911');
@@ -63,9 +58,7 @@ export class CreateRetreatSceneTest extends SceneTest {
 
     @Test('Set past date')
     public async setPastStartDate(): Promise<void> {
-        this.checkMethodMetadata(this.scene.setStartDate, [
-            { method: MethodName.On, args: ['text'] },
-        ]);
+        this.checkMethodMetadata(this.scene.setStartDate, [{ method: MethodName.On, args: ['text'] }]);
 
         this.setMessageToContext('01.01.2001');
         await this.scene.setStartDate(this.context, '01.01.2001');
@@ -75,14 +68,11 @@ export class CreateRetreatSceneTest extends SceneTest {
 
     @Test('Set string to date')
     public async setStringStartDate(): Promise<void> {
-        this.checkMethodMetadata(this.scene.setStartDate, [
-            { method: MethodName.On, args: ['text'] },
-        ]);
+        this.checkMethodMetadata(this.scene.setStartDate, [{ method: MethodName.On, args: ['text'] }]);
 
         this.setMessageToContext('asdsadasd');
         await this.scene.setStartDate(this.context, 'asdsadasd');
 
         this.checkReplyMessage('Введите дату начала в формате ДД.ММ.ГГГГ \nПример: 01.08.2034');
     }
-
 }

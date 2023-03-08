@@ -9,7 +9,6 @@ export abstract class IdentityCrudService<
     UpdateParams extends Partial<M>,
     FO extends object = {},
 > extends CrudService<M, CreationParams, UpdateParams, FO> {
-
     public async getById(id: string): Promise<Optional<M>> {
         const model = await this.manager.findOneBy<M>(this.modelClass, { id } as FindOptionsWhere<M>);
         return model ?? undefined;

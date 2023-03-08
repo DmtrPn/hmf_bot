@@ -6,7 +6,6 @@ import { UserCommand } from './UserCommand';
 interface Params extends UserCreateData {}
 
 export class UserCreateCommand extends UserCommand<Params> {
-
     public async execute(): Promise<void> {
         const user = await this.crudService.getById(this.params.id);
 
@@ -15,7 +14,6 @@ export class UserCreateCommand extends UserCommand<Params> {
         }
         await this.crudService.create(this.params);
     }
-
 }
 
-export const createUser = (params: Params) => (new UserCreateCommand(params)).execute();
+export const createUser = (params: Params) => new UserCreateCommand(params).execute();

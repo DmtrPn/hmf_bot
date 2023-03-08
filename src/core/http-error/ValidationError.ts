@@ -22,7 +22,6 @@ class ValidationError extends HttpError {
     protected override get errorCode(): string {
         return 'Validation';
     }
-
 }
 
 export { ValidationError, ValidationErrorData, ValidationErrorItems };

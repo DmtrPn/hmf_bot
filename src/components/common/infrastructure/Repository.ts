@@ -11,7 +11,6 @@ import { FindCommand } from './FindCommand';
  * FO - search options
  */
 export abstract class Repository<E, M, FO> extends TransactionManager {
-
     protected ormEntity: Class<M>;
 
     protected constructor(modelClass: Class<M>) {
@@ -28,9 +27,7 @@ export abstract class Repository<E, M, FO> extends TransactionManager {
     public async save(entity: E): Promise<void>;
     public async save(entity: E[]): Promise<void>;
     public async save(entity: E | E[]): Promise<void> {
-        return Array.isArray(entity)
-            ? this.saveAll(entity)
-            : this.saveOne(entity);
+        return Array.isArray(entity) ? this.saveAll(entity) : this.saveOne(entity);
     }
 
     public async delete(entity: E): Promise<void>;
@@ -65,5 +62,4 @@ export abstract class Repository<E, M, FO> extends TransactionManager {
     protected abstract create(model: M): E;
     protected abstract createFindCommand(findOption: FO): FindCommand<M, FO>;
     protected abstract modelFrom(e: E): M;
-
 }

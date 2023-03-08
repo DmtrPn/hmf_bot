@@ -8,7 +8,6 @@ import { TransactionManager } from '@common/infrastructure/TransactionManager';
 type ValueType<M, P extends keyof M> = Nullable<M[P]> | Nullable<M[P]>[] | undefined;
 
 export abstract class FindCommand<M, FO> extends TransactionManager {
-
     protected modelClass: Class<M>;
     protected qb: SelectQueryBuilder<M>;
     private isReturnEmpty = false;
@@ -22,16 +21,11 @@ export abstract class FindCommand<M, FO> extends TransactionManager {
     }
 
     public execute(): Promise<M[]> {
-        return this
-            .buildQuery()
-            .getResult();
+        return this.buildQuery().getResult();
     }
 
     protected buildQuery(): this {
-        return this
-            .addRelations()
-            .addFilters()
-            .orderBy();
+        return this.addRelations().addFilters().orderBy();
     }
 
     protected addRelations(): this {
@@ -50,11 +44,7 @@ export abstract class FindCommand<M, FO> extends TransactionManager {
         return this.qb.getMany();
     }
 
-    protected filterBy<P extends keyof M & string>(
-    field: P,
-    values: ValueType<M, P>,
-    table = this.tableName,
-    ): this {
+    protected filterBy<P extends keyof M & string>(field: P, values: ValueType<M, P>, table = this.tableName): this {
         if (isUndefined(values)) {
             return this;
         }
@@ -69,10 +59,9 @@ export abstract class FindCommand<M, FO> extends TransactionManager {
         if (isNull(values)) {
             this.qb.andWhere(`${columnName} IS NULL`);
         } else {
-            this.qb.andWhere(
-                isArrayValues ? `${columnName} = ANY(:${field})` : `${columnName} = :${field}`,
-                { [field]: values },
-            );
+            this.qb.andWhere(isArrayValues ? `${columnName} = ANY(:${field})` : `${columnName} = :${field}`, {
+                [field]: values,
+            });
         }
 
         return this;
@@ -99,5 +88,4 @@ export abstract class FindCommand<M, FO> extends TransactionManager {
     private async getResult(): Promise<M[]> {
         return this.isReturnEmpty ? [] : this.getMany();
     }
-
 }

@@ -27,7 +27,6 @@ export abstract class SceneTest {
     @BeforeEach()
     public async beforeEach() {
         this.context = makeMockContext({ message: { chat: { id: 1234 } } });
-
     }
 
     protected setMessageToContext(message: string): void {
@@ -35,7 +34,9 @@ export abstract class SceneTest {
     }
 
     protected checkMethodMetadata(target: object, metadata: ListenerMetadata[]): void {
-        expect(orderBy(Reflect.getMetadata('LISTENERS_METADATA', target), 'method')).toStrictEqual(orderBy(metadata, 'method'));
+        expect(orderBy(Reflect.getMetadata('LISTENERS_METADATA', target), 'method')).toStrictEqual(
+            orderBy(metadata, 'method'),
+        );
     }
 
     protected checkRedirectToScene(scene: SceneName): void {

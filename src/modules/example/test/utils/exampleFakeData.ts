@@ -11,6 +11,5 @@ export const getFakeExampleCreationParams = (): Attributes<ExampleModel> => {
 };
 
 export const getFakeExampleUpdateParams = (): ExampleUpdateData => {
-    return {
-    };
+    return {};
 };

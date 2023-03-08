@@ -8,8 +8,6 @@ export class UserList extends List<UserModel, UserCreateData, UserFindOptions> {
     }
 
     protected override filterValue(value: UserModel, { id, chatId }: UserFindOptions): boolean {
-        return this.filterFieldValueByArray(value, id, 'id')
-            && this.filterFieldValue(value, chatId, 'chatId');
+        return this.filterFieldValueByArray(value, id, 'id') && this.filterFieldValue(value, chatId, 'chatId');
     }
-
 }

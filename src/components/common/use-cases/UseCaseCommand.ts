@@ -1,5 +1,4 @@
 export abstract class UseCaseCommand<T extends object> {
-
     protected params: T;
 
     constructor(params: T) {
@@ -9,5 +8,4 @@ export abstract class UseCaseCommand<T extends object> {
 
     public abstract execute(): void | Promise<void>;
     public setData(): void {}
-
 }

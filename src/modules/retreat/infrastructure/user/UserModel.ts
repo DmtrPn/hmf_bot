@@ -4,7 +4,6 @@ import { BaseModel } from '@common/infrastructure/BaseModel';
 
 @Entity('users')
 export class UserModel extends BaseModel<UserModel> {
-
     @PrimaryColumn({ name: 'user_id' })
     public id!: string;
 
@@ -16,5 +15,4 @@ export class UserModel extends BaseModel<UserModel> {
 
     @Column()
     public lastName!: string;
-
 }

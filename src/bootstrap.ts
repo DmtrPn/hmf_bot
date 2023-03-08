@@ -15,7 +15,7 @@ tsConfigPaths.register({
 });
 
 function padDatePart(str: number) {
-    return (`0${str}`).slice(-2);
+    return `0${str}`.slice(-2);
 }
 
 function consoleErrorTimestamp(message: any) {
@@ -30,12 +30,11 @@ function consoleErrorTimestamp(message: any) {
     );
 }
 
-process.on('uncaughtException', (err) => {
+process.on('uncaughtException', err => {
     consoleErrorTimestamp(err);
 });
 
 process.on('unhandledRejection', (reason: any, p) => {
-
     if (reason.error) {
         const { error } = reason;
         if (error.response) {

@@ -10,8 +10,7 @@ export abstract class CrudService<
     CreationParams extends Partial<M>,
     UpdateParams = Omit<Attributes<M>, 'id'>,
     FO extends object = {},
->  extends TransactionManager {
-
+> extends TransactionManager {
     protected abstract modelClass: Class<M>;
     protected abstract findCommand: Class<FindCommand<M, FO>>;
 
@@ -24,12 +23,7 @@ export abstract class CrudService<
         const theParams = this.enrichCreationParams(params);
 
         await this.executeInTransaction(entityManager =>
-            entityManager
-                .createQueryBuilder()
-                .insert()
-                .into(this.modelClass)
-                .values(theParams)
-                .execute(),
+            entityManager.createQueryBuilder().insert().into(this.modelClass).values(theParams).execute(),
         );
     }
 
@@ -45,5 +39,4 @@ export abstract class CrudService<
     }
 
     protected abstract enrichCreationParams(params: CreationParams): M;
-
 }

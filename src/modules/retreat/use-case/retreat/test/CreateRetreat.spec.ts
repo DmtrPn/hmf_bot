@@ -38,5 +38,4 @@ export class CreateRetreatSpec {
         await createRetreat(params);
         await createRetreat(params);
     }
-
 }

@@ -7,13 +7,12 @@ import { IUserCrudService } from '@retreat/domain/user/IUserCrudService';
 
 @Describe('Start scene')
 export class StartSceneTest extends SceneTest {
-
     @Inject protected crudService!: IUserCrudService;
     private scene = new StartScene();
 
     @Test('On start redirect to main scene')
     public async retreatCreate(): Promise<any> {
-        this.checkMethodMetadata(this.scene.start,  [ { method: MethodName.Start, args: [] } ]);
+        this.checkMethodMetadata(this.scene.start, [{ method: MethodName.Start, args: [] }]);
 
         await this.scene.start(this.context);
 
@@ -23,7 +22,7 @@ export class StartSceneTest extends SceneTest {
 
     @Test('Create new user on start')
     public async createUserOnStart(): Promise<any> {
-        this.checkMethodMetadata(this.scene.start,  [ { method: MethodName.Start, args: [] } ]);
+        this.checkMethodMetadata(this.scene.start, [{ method: MethodName.Start, args: [] }]);
 
         await this.scene.start(this.context);
         // @ts-ignore
@@ -33,7 +32,7 @@ export class StartSceneTest extends SceneTest {
 
     @Test('On help redirect to main scene')
     public async helpRedirectToMainScene(): Promise<any> {
-        this.checkMethodMetadata(this.scene.help,  [ { method: MethodName.Help, args: [] } ]);
+        this.checkMethodMetadata(this.scene.help, [{ method: MethodName.Help, args: [] }]);
 
         await this.scene.help(this.context);
 
@@ -43,7 +42,7 @@ export class StartSceneTest extends SceneTest {
 
     @Test('On help redirect to main scene')
     public async yextRedirectToMain(): Promise<any> {
-        this.checkMethodMetadata(this.scene.onText,  [
+        this.checkMethodMetadata(this.scene.onText, [
             { method: MethodName.On, args: [['text', 'sticker', 'message']] },
         ]);
 
@@ -52,5 +51,4 @@ export class StartSceneTest extends SceneTest {
         this.checkEmptyReply();
         this.checkRedirectToScene(SceneName.Main);
     }
-
 }

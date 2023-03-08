@@ -1,6 +1,6 @@
 import { TelegrafModule } from 'nestjs-telegraf';
 import { Module } from '@nestjs/common';
-import RedisSession  from 'telegraf-session-redis';
+import RedisSession from 'telegraf-session-redis';
 import { ScheduleModule } from '@nestjs/schedule';
 
 import { BotModule } from '@retreat/BotModule';
@@ -23,14 +23,15 @@ const session = new RedisSession({
             token: process.env.TB_TOKEN!,
             middlewares: [session],
             include: [BotModule],
-            launchOptions: process.env.DOBRO_ENV !== 'dev'
-                ? {
-                    webhook: {
-                        domain: `${process.env.TB_WEBHOOK_URL}`,
-                        hookPath: `/${process.env.TB_WEBHOOK_SECRET}`,
-                    },
-                }
-                : undefined,
+            launchOptions:
+                process.env.DOBRO_ENV !== 'dev'
+                    ? {
+                          webhook: {
+                              domain: `${process.env.TB_WEBHOOK_URL}`,
+                              hookPath: `/${process.env.TB_WEBHOOK_SECRET}`,
+                          },
+                      }
+                    : undefined,
         }),
         BotModule,
     ],
