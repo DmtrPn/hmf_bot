@@ -1,5 +1,3 @@
-// import { ExtraReplyMessage } from 'telegraf/typings/telegram-types';
-
 import { Context } from '../types';
 import { SceneName } from '@retreat/application/types';
 

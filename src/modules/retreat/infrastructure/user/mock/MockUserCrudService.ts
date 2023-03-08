@@ -1,10 +1,12 @@
+import { Singleton } from 'typescript-ioc';
+
 import type { IUserCrudService } from '@retreat/domain/user/IUserCrudService';
 import { UserCreateData, UserFindOptions, UserUpdateData } from '@retreat/domain/user/types';
 
 import { UserModel } from '../UserModel';
 import { UserList } from './UserList';
 
-// @ts-ignore
+@Singleton
 export class MockUserCrudService implements IUserCrudService {
 
     private list = new UserList();

@@ -1,6 +1,6 @@
 import { Cron, CronExpression } from '@nestjs/schedule';
 
-import { sendNotifications } from '../../use-case/notification/SendNotificationsCommand';
+import { sendNotifications } from '@retreat/use-case/notification/SendNotificationsCommand';
 
 export class RetreatScheduler {
 

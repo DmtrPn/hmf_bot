@@ -13,7 +13,6 @@ import { FindCommand } from '@common/infrastructure/FindCommand';
 import { NotificationModel } from './NotificationModel';
 import { NotificationFindCommand } from './NotificationFindCommand';
 
-// @ts-ignore
 export class NotificationCrudService
     extends IdentityCrudService<NotificationModel, NotificationCreateData, NotificationUpdateData, NotificationFindOptions>
     implements INotificationCrudService {

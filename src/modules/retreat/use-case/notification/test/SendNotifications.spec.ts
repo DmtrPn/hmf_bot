@@ -11,17 +11,18 @@ import { createFakeRetreat } from '../../retreat/test/utils/createFakeRetreat';
 import { getFakeNotificationCreationParams } from './utils/notificationFakeData';
 import { DateHelper } from '@utils/DateHelper';
 
-@Describe.only()
+@Describe()
 export class SendNotificationsSpec {
     @Inject private crudService!: INotificationCrudService;
 
     @Test('Send notification')
     public async sendNotification(): Promise<void> {
-        const { id } = await this.createFakeNotification({ executeAt: DateHelper.subMinutes(new Date(), 5)});
+        const { id } = await this.createFakeNotification({ executeAt: DateHelper.subMinutes(new Date(), 5) });
         await sendNotifications();
         const notification = await this.crudService.getById(id);
 
-        expect(notification.status).toEqual(NotificationStatus.Executed);
+        expect(notification).toBeDefined();
+        expect(notification!.status).toEqual(NotificationStatus.Executed);
     }
 
     @Test('Dont send future notification')
@@ -30,7 +31,8 @@ export class SendNotificationsSpec {
         await sendNotifications();
         const notification = await this.crudService.getById(id);
 
-        expect(notification.status).toEqual(NotificationStatus.Active);
+        expect(notification).toBeDefined();
+        expect(notification!.status).toEqual(NotificationStatus.Active);
     }
 
     private async createFakeNotification(params: Partial<NotificationCreateData> = {}): Promise<NotificationCreateData> {

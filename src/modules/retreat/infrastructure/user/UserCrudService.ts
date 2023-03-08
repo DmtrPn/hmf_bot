@@ -8,7 +8,6 @@ import { FindCommand } from '@common/infrastructure/FindCommand';
 import { UserModel } from './UserModel';
 import { UserFindCommand } from './UserFindCommand';
 
-// @ts-ignore
 export class UserCrudService
     extends IdentityCrudService<UserModel, UserCreateData, UserUpdateData, UserFindOptions>
     implements IUserCrudService {

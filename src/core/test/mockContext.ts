@@ -15,6 +15,17 @@ export function makeMockContext(update: object = {}, contextExtra = {}): MockCon
     Object.assign(
         ctx,
         {
+            update: {
+                chat_member: {
+                    from: {
+                        id: FakeParams.getId(),
+                        chatId: FakeParams.getInteger(),
+                        firstName: FakeParams.getName(),
+                        lastName: FakeParams.getName(),
+                    },
+                },
+            },
+
             session: {},
             debug: {
                 currentScene: '',

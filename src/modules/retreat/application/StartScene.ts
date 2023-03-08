@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import { BotAuditEventType, botAuditLogService } from '@components/auditLog/BotAuditLogService';
 import { Context } from '@core/types';
 
-import { createUser } from '../use-case/user/UserCreateCommand';
+import { createUser } from '@retreat/use-case/user/UserCreateCommand';
 
 import { SceneName } from './types';
 import { isDefined } from '@utils/isDefined';
@@ -18,7 +18,8 @@ export class StartScene {
         if (isDefined(ctx.from)) {
             await createUser({
                 id: uuid(),
-                chatId: ctx.from.id,
+                // @ts-ignore
+                chatId: ctx.from.chatId,
                 firstName: ctx.from.first_name,
                 lastName: ctx.from.last_name || '',
             });

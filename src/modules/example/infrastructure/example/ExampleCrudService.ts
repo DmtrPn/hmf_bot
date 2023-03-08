@@ -8,7 +8,6 @@ import { ExampleFindCommand } from './ExampleFindCommand';
 import { IdentityCrudService } from '@common/infrastructure/IdentityCrudService';
 import { FindCommand } from '@common/infrastructure/FindCommand';
 
-// @ts-ignore
 export class ExampleCrudService
     extends IdentityCrudService<ExampleModel, ExampleCreateData, ExampleUpdateData, ExampleFindOptions>
     implements IExampleCrudService {

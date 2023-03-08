@@ -19,12 +19,6 @@ export class BotApplication {
             logger: ['error', 'warn', 'debug'],
         });
 
-        // const bot = this.app.get(getBotToken());
-        // // console.log('app', this.app);
-        // // console.log('bot', bot.telegram.sendMessage);
-        // bot.telegram.sendMessage('chat.id',
-        //     "File content at: " + new Date() + " is: \n"
-        // )
         this.initWebHook();
         this.initLogger();
     }

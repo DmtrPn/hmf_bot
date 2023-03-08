@@ -1,11 +1,14 @@
+import { Singleton } from 'typescript-ioc';
+
 import type { IRetreatCrudService } from '@retreat/domain/retreat/IRetreatCrudService';
 import { RetreatCreateData, RetreatFindOptions, RetreatUpdateData } from '@retreat/domain/retreat/types';
 
 import { RetreatModel } from '../RetreatModel';
 import { RetreatList } from './RetreatList';
+import { MockCrudService } from '@core/test/abstract/MockCrudService';
 
-// @ts-ignore
-export class MockRetreatCrudService implements IRetreatCrudService {
+@Singleton
+export class MockRetreatCrudService extends MockCrudService implements IRetreatCrudService {
 
     private list = new RetreatList();
 

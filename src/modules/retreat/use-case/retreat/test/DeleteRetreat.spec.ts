@@ -30,7 +30,7 @@ export class DaleteRetreatSpec {
         await deleteRetreat(params);
         const retreat = await this.crudService.getById(params.id);
 
-        expect(retreat).toBeNull();
+        expect(retreat).toBeUndefined();
     }
 
     @expectError(NotFoundError)

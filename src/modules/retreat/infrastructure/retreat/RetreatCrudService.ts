@@ -8,7 +8,6 @@ import { FindCommand } from '@common/infrastructure/FindCommand';
 import { RetreatModel } from './RetreatModel';
 import { RetreatFindCommand } from './RetreatFindCommand';
 
-// @ts-ignore
 export class RetreatCrudService
     extends IdentityCrudService<RetreatModel, RetreatCreateData, RetreatUpdateData, RetreatFindOptions>
     implements IRetreatCrudService {

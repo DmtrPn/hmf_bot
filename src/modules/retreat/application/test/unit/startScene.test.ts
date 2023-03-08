@@ -1,11 +1,14 @@
 import { MethodName, SceneTest } from '@core/test/SceneTest';
+import { Inject } from 'typescript-ioc';
 
 import { StartScene } from '../../StartScene';
 import { SceneName } from '../../types';
+import { IUserCrudService } from '@retreat/domain/user/IUserCrudService';
 
 @Describe('Start scene')
 export class StartSceneTest extends SceneTest {
 
+    @Inject protected crudService!: IUserCrudService;
     private scene = new StartScene();
 
     @Test('On start redirect to main scene')
@@ -23,9 +26,9 @@ export class StartSceneTest extends SceneTest {
         this.checkMethodMetadata(this.scene.start,  [ { method: MethodName.Start, args: [] } ]);
 
         await this.scene.start(this.context);
-
-        this.checkEmptyReply();
-        this.checkRedirectToScene(SceneName.Main);
+        // @ts-ignore
+        const users = await this.crudService.find({ chatId: this.context.from!.chatId });
+        expect(users.length).toEqual(1);
     }
 
     @Test('On help redirect to main scene')
