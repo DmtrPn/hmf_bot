@@ -13,17 +13,27 @@ import { createFakeUser } from '../../user/test/utils/createFakeUser';
 @Describe()
 export class CreateRetreatSpec {
     @Inject protected crudService!: IRetreatCrudService;
-    private userId!: string;
+    private chatId!: number;
 
     @BeforeAll()
     public async beforeAll(): Promise<void> {
         const user = await createFakeUser();
-        this.userId = user.id;
+        this.chatId = user.chatId;
     }
 
     @Test('Create retreat test')
     public async createTest(): Promise<void> {
-        const params = getFakeRetreatCreationParams({ userId: this.userId });
+        const params = getFakeRetreatCreationParams({ chatId: this.chatId });
+        await createRetreat(params);
+
+        const retreat = await this.crudService.getById(params.id);
+
+        expect(retreat).toEqual(params);
+    }
+
+    @Test('Create retreat test')
+    public async createNotificationOnTest(): Promise<void> {
+        const params = getFakeRetreatCreationParams({ chatId: this.chatId });
         await createRetreat(params);
 
         const retreat = await this.crudService.getById(params.id);
@@ -34,7 +44,7 @@ export class CreateRetreatSpec {
     @expectError(AlreadyExistsError)
     @Test('Cant create retreat with exist id')
     public async createRetreatWithExistIdTest(): Promise<void> {
-        const params = getFakeRetreatCreationParams({ userId: this.userId });
+        const params = getFakeRetreatCreationParams({ chatId: this.chatId });
         await createRetreat(params);
         await createRetreat(params);
     }

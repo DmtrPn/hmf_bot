@@ -4,7 +4,7 @@ import { RetreatCreateData, RetreatUpdateData } from '@retreat/domain/retreat/ty
 export const getFakeRetreatCreationParams = (params: Partial<RetreatCreateData> = {}): RetreatCreateData => {
     return {
         id: FakeParams.getId(),
-        userId: FakeParams.getId(),
+        chatId: FakeParams.getInteger(),
         startDate: FakeParams.getDate(),
         ...params,
     };

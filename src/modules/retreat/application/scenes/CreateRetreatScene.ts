@@ -1,9 +1,13 @@
 import { Markup } from 'telegraf';
+import { v4 as uuid } from 'uuid';
 import { Scene, Hears, SceneEnter, Ctx, On, SceneLeave, Command, Message } from 'nestjs-telegraf';
 
 import { Context } from '@core/types';
 import { SceneName } from '../types';
 import { DateFormat, DateHelper } from '@utils/DateHelper';
+import { isDefined } from '@utils/isDefined';
+import { createUser } from '../../use-case/user/UserCreateCommand';
+import { createRetreat } from '../../use-case/retreat/RetreatCreateCommand';
 
 @Scene(SceneName.CreateRetreat)
 export class CreateRetreatScene {
@@ -28,13 +32,30 @@ export class CreateRetreatScene {
 
     @On('text')
     public async setStartDate(@Ctx() ctx: Context, @Message('text') reversedText: string) {
-        const result = DateHelper.createDate(reversedText, DateFormat.DateWithDotSeparator);
+        const startDate = DateHelper.createDate(reversedText, DateFormat.DateWithDotSeparator);
 
-        if (result.toString() === 'Invalid Date') {
+        if (startDate.toString() === 'Invalid Date') {
             await ctx.reply('Введите дату начала в формате ДД.ММ.ГГГГ \nПример: 01.08.2034');
-        } else if (DateHelper.isBefore(result, new Date())) {
+        } else if (DateHelper.isBefore(startDate, new Date())) {
             await ctx.reply('Дата должна быть в будущем');
         } else {
+            if (isDefined(ctx.from)) {
+                await createUser({
+                    ifNotExist: true,
+                    id: uuid(),
+                    // @ts-ignore
+                    chatId: ctx.from.chatId,
+                    firstName: ctx.from.first_name,
+                    lastName: ctx.from.last_name || '',
+                });
+                await createRetreat({
+                    startDate,
+                    id: uuid(),
+                    // @ts-ignore
+                    chatId: ctx.from.chatId,
+                });
+            }
+
             await ctx.reply(`${reversedText} придет напонминаие!`);
         }
     }

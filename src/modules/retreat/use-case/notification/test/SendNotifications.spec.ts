@@ -38,8 +38,8 @@ export class SendNotificationsSpec {
     private async createFakeNotification(
         params: Partial<NotificationCreateData> = {},
     ): Promise<NotificationCreateData> {
-        const { id: userId, chatId } = await createFakeUser();
-        const { id: retreatId } = await createFakeRetreat({ userId });
+        const { chatId } = await createFakeUser();
+        const { id: retreatId } = await createFakeRetreat({ chatId });
         const notification = getFakeNotificationCreationParams({ retreatId, chatId, ...params });
 
         await this.crudService.create(notification);

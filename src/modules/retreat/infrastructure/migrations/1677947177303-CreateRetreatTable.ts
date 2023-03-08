@@ -5,7 +5,7 @@ export class CreateRetreatTable1677947177303 implements MigrationInterface {
         await queryRunner.query(`
             CREATE TABLE retreat (
                 retreat_id UUID PRIMARY KEY,
-                user_id UUID NOT NULL REFERENCES users(user_id),
+                chat_id INT NOT NULL REFERENCES users(chat_id),
                 start_date TIMESTAMPTZ NOT NULL
             );
         `);

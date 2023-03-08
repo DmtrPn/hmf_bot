@@ -8,7 +8,7 @@ export class RetreatList extends List<RetreatModel, RetreatCreateData, RetreatFi
         return new RetreatModel(params);
     }
 
-    protected override filterValue(value: RetreatModel, { id, userId }: RetreatFindOptions): boolean {
-        return this.filterFieldValueByArray(value, id, 'id') && this.filterFieldValue(value, userId, 'userId');
+    protected override filterValue(value: RetreatModel, { id, chatId }: RetreatFindOptions): boolean {
+        return this.filterFieldValueByArray(value, id, 'id') && this.filterFieldValue(value, chatId, 'chatId');
     }
 }

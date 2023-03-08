@@ -9,23 +9,19 @@ export function makeMockContext(update: object = {}, contextExtra = {}): MockCon
     tg.callApi = (method, data) => {
         console.log(`mocked tg callApi ${method}`, data);
     };
+    const from = {
+        id: FakeParams.getId(),
+        chatId: FakeParams.getInteger(),
+        firstName: FakeParams.getName(),
+        lastName: FakeParams.getName(),
+    };
 
     // @ts-ignore
     const ctx: MockContext = new TelegramContext(update, tg, {});
     Object.assign(
         ctx,
         {
-            update: {
-                chat_member: {
-                    from: {
-                        id: FakeParams.getId(),
-                        chatId: FakeParams.getInteger(),
-                        firstName: FakeParams.getName(),
-                        lastName: FakeParams.getName(),
-                    },
-                },
-            },
-
+            update: { chat_member: { from } },
             session: {},
             debug: {
                 currentScene: '',
@@ -36,30 +32,24 @@ export function makeMockContext(update: object = {}, contextExtra = {}): MockCon
         contextExtra,
     );
 
+    // prettier-ignore
     //  @ts-ignore
-    ctx.reply = (message, extra = undefined) => {
-        ctx.debug.reply = { message, extra };
-    };
+    ctx.reply = (message, extra = undefined) => { ctx.debug.reply = { message, extra }; };
 
     // @ts-ignore
     ctx.scene = {
+        // prettier-ignore
         // @ts-ignore
-        enter: sceneName => {
-            ctx.debug.currentScene = sceneName;
-        },
+        enter: sceneName => { ctx.debug.currentScene = sceneName; },
+        // prettier-ignore
         // @ts-ignore
-        leave: () => {
-            ctx.debug.currentScene = '';
-        },
+        leave: () => { ctx.debug.currentScene = ''; },
     };
 
     // @ts-ignore
-    ctx.getChat = () => ({
-        id: FakeParams.getId(),
-        chatId: FakeParams.getInteger(),
-        firstName: FakeParams.getName(),
-        lastName: FakeParams.getName(),
-    });
+    ctx.getChat = () => from;
+
+    ctx.getChatId = () => from.chatId;
 
     return ctx;
 }

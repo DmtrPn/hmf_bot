@@ -8,7 +8,7 @@ export class RetreatModel extends BaseModel<RetreatModel> {
     public id!: string;
 
     @Column()
-    public userId!: string;
+    public chatId!: number;
 
     @Column()
     public startDate!: Date;

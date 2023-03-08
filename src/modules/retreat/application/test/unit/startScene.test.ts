@@ -1,5 +1,5 @@
-import { MethodName, SceneTest } from '@core/test/SceneTest';
 import { Inject } from 'typescript-ioc';
+import { MethodName, SceneTest } from '@core/test/SceneTest';
 
 import { StartScene } from '../../StartScene';
 import { SceneName } from '../../types';
@@ -25,8 +25,7 @@ export class StartSceneTest extends SceneTest {
         this.checkMethodMetadata(this.scene.start, [{ method: MethodName.Start, args: [] }]);
 
         await this.scene.start(this.context);
-        // @ts-ignore
-        const users = await this.crudService.find({ chatId: this.context.from!.chatId });
+        const users = await this.crudService.find({ chatId: this.context.getChatId() });
         expect(users.length).toEqual(1);
     }
 

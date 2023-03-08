@@ -1,12 +1,12 @@
 import { BaseFindOptions } from '@common/domain/types';
 
 export interface RetreatFindOptions extends BaseFindOptions {
-    userId?: string;
+    chatId?: number;
 }
 
 export interface RetreatCreateData {
     id: string;
-    userId: string;
+    chatId: number;
     startDate: Date;
 }
 

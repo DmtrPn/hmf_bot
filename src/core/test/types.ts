@@ -6,6 +6,7 @@ export interface MockContext extends Context {
         currentScene: SceneName;
         reply: Reply;
     };
+    getChatId(): number;
 }
 
 interface Reply {

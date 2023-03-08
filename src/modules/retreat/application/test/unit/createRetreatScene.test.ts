@@ -1,10 +1,17 @@
+import { Inject } from 'typescript-ioc';
 import { MethodName, SceneTest } from '@core/test/SceneTest';
+
+import { IUserCrudService } from '@retreat/domain/user/IUserCrudService';
+import { IRetreatCrudService } from '@retreat/domain/retreat/IRetreatCrudService';
+import { DateFormat, DateHelper } from '@utils/DateHelper';
 
 import { CreateRetreatScene } from '../../scenes/CreateRetreatScene';
 import { SceneName } from '../../types';
 
 @Describe('Create retreat scene')
 export class CreateRetreatSceneTest extends SceneTest {
+    @Inject protected userCrudService!: IUserCrudService;
+    @Inject protected retreatCrudService!: IRetreatCrudService;
     private scene = new CreateRetreatScene();
 
     @Test('On enter show back button and welcome message')
@@ -44,6 +51,31 @@ export class CreateRetreatSceneTest extends SceneTest {
         await this.scene.setStartDate(this.context, date);
 
         this.checkReplyMessage(`${date} придет напонминаие!`);
+    }
+
+    @Test('Create user on start date set, if not exist')
+    public async createUserOnSetStartDate(): Promise<void> {
+        this.checkMethodMetadata(this.scene.setStartDate, [{ method: MethodName.On, args: ['text'] }]);
+        const startDate = DateHelper.addDays(new Date(), 3);
+        const date = DateHelper.format(startDate, DateFormat.DateWithDotSeparator);
+        this.setMessageToContext(date);
+        await this.scene.setStartDate(this.context, date);
+
+        const users = await this.userCrudService.find({ chatId: this.context.getChatId() });
+        expect(users.length).toEqual(1);
+    }
+
+    @Test('Create retreat on start date set')
+    public async createRetreatOnSetStartDate(): Promise<void> {
+        this.checkMethodMetadata(this.scene.setStartDate, [{ method: MethodName.On, args: ['text'] }]);
+        const startDate = DateHelper.addDays(new Date(), 3);
+        const date = DateHelper.format(startDate, DateFormat.DateWithDotSeparator);
+        this.setMessageToContext(date);
+        await this.scene.setStartDate(this.context, date);
+
+        const [user] = await this.userCrudService.find({ chatId: this.context.getChatId() });
+        const retreats = await this.retreatCrudService.find({ chatId: user.chatId });
+        expect(retreats.length).toEqual(1);
     }
 
     @Test('Set wrong start date')

@@ -15,17 +15,17 @@ import { createFakeUser } from '../../user/test/utils/createFakeUser';
 @Describe()
 export class DaleteRetreatSpec {
     @Inject protected crudService!: IRetreatCrudService;
-    private userId!: string;
+    private chatId!: number;
 
     @BeforeAll()
     public async beforeAll(): Promise<void> {
         const user = await createFakeUser();
-        this.userId = user.id;
+        this.chatId = user.chatId;
     }
 
     @Test('Delete retreat test')
     public async deleteTest(): Promise<void> {
-        const params = getFakeRetreatCreationParams({ userId: this.userId });
+        const params = getFakeRetreatCreationParams({ chatId: this.chatId });
         await createRetreat(params);
         await deleteRetreat(params);
         const retreat = await this.crudService.getById(params.id);
