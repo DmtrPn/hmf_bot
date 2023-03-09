@@ -3,10 +3,15 @@ import { NotificationStatus } from '@retreat/domain/notification/types';
 
 import { sendNotification } from './SendNotificationCommand';
 import { NotificationCommand } from './NotificationCommand';
+import { LoggerFactory } from '@components/logging/LoggerFactory';
 
 export class SendNotificationsCommand extends NotificationCommand<{}> {
+    private logger = LoggerFactory.getLogger();
     public async execute(): Promise<void> {
         const actualNotifications = await this.getActualNotifications();
+        if (actualNotifications.length > 0) {
+            this.logger.info(`Send ${actualNotifications.length} notifications`);
+        }
         await Promise.all(actualNotifications.map(model => sendNotification(model)));
     }
 
