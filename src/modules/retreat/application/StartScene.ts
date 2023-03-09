@@ -16,6 +16,7 @@ export class StartScene {
         this.logEvent(ctx, BotAuditEventType.Start);
         if (isDefined(ctx.from)) {
             await createUser({
+                ifNotExist: true,
                 id: uuid(),
                 chatId: ctx.from.id,
                 firstName: ctx.from.first_name,
