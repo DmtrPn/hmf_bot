@@ -5,7 +5,7 @@ export class TelegrafBot {
 
     public static getInstance(): Telegraf {
         if (!this.instance) {
-            this.instance = new Telegraf(process.env.BOT_TOKEN!);
+            this.instance = new Telegraf(process.env.TB_TOKEN!);
         }
 
         return this.instance;
