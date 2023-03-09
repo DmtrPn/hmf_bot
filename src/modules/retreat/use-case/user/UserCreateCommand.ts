@@ -10,7 +10,7 @@ interface Params extends UserCreateData {
 export class UserCreateCommand extends UserCommand<Params> {
     public async execute(): Promise<void> {
         const { ifNotExist, ...params } = this.params;
-        const user = await this.crudService.getById(params.id);
+        const [user] = await this.crudService.find({ chatId: params.chatId });
 
         if (!user) {
             await this.crudService.create(params);
