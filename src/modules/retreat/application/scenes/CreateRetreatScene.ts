@@ -43,16 +43,14 @@ export class CreateRetreatScene {
                 await createUser({
                     ifNotExist: true,
                     id: uuid(),
-                    // @ts-ignore
-                    chatId: ctx.from.chatId,
+                    chatId: ctx.from.id,
                     firstName: ctx.from.first_name,
                     lastName: ctx.from.last_name || '',
                 });
                 await createRetreat({
                     startDate,
                     id: uuid(),
-                    // @ts-ignore
-                    chatId: ctx.from.chatId,
+                    chatId: ctx.from.id,
                 });
             }
 

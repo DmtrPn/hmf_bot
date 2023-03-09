@@ -10,10 +10,9 @@ export function makeMockContext(update: object = {}, contextExtra = {}): MockCon
         console.log(`mocked tg callApi ${method}`, data);
     };
     const from = {
-        id: FakeParams.getId(),
-        chatId: FakeParams.getInteger(),
-        firstName: FakeParams.getName(),
-        lastName: FakeParams.getName(),
+        id: FakeParams.getInteger(),
+        first_name: FakeParams.getName(),
+        last_name: FakeParams.getName(),
     };
 
     // @ts-ignore
@@ -49,7 +48,7 @@ export function makeMockContext(update: object = {}, contextExtra = {}): MockCon
     // @ts-ignore
     ctx.getChat = () => from;
 
-    ctx.getChatId = () => from.chatId;
+    ctx.getChatId = () => from.id;
 
     return ctx;
 }
