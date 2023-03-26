@@ -64,14 +64,19 @@ module.exports = {
                 message: `Завтра ретрит
 06:00 Подъем
 06:30 Медитация
-08:00 Лекция
-10:00 Медитация
-12:00 Лекция
-14:00 Медитация
-16:00 Лекция
-18:00 Медитация
-19:00 Лекция
-21:00 Медитация
+08:00 Зарядка
+09:00 Медитация
+10:00 Завтрак
+11:00 Лекция
+12:00 Медитация
+12:30 Лекция
+13:00 Обед
+14:00 Лекция
+15:00 Медитация
+15:30 Лекция
+17:00 Медитация
+18:00 Ужин
+19:00 Медитация
 `,
                 hour: 20,
                 minutes: 0,
@@ -80,48 +85,73 @@ module.exports = {
             {
                 message: 'Утренняя медитация в 6:30',
                 hour: 6,
-                minutes: 0,
+                minutes: 30,
             },
             {
-                message: 'Лекция https://www.youtube.com/watch?v=h7K5JK2lWtc&t=551s',
+                message: 'Зарядка',
                 hour: 8,
                 minutes: 0,
             },
             {
-                message: 'Медитация в 10:00',
+                message: 'Медитация в 09:00',
                 hour: 9,
-                minutes: 50,
+                minutes: 0,
+            },
+            {
+                message: 'Завтрак',
+                hour: 10,
+                minutes: 0,
             },
             {
                 message: 'Лекция https://www.youtube.com/watch?v=pMB7u6JfNPg',
+                hour: 11,
+                minutes: 0,
+            },
+            {
+                message: 'Медитация в 12:00',
                 hour: 12,
                 minutes: 0,
             },
             {
-                message: 'Медитация в 14:00',
-                hour: 13,
-                minutes: 50,
+                message: 'Лекция https://www.youtube.com/watch?v=h7K5JK2lWtc',
+                hour: 12,
+                minutes: 30,
             },
             {
-                message: 'Лекция https://www.youtube.com/watch?v=qxvhFXqspkU',
-                hour: 16,
+                message: 'Обед',
+                hour: 13,
                 minutes: 0,
             },
             {
-                message: 'Медитация в 18:00',
-                hour: 17,
-                minutes: 50,
+                message: 'Лекция https://www.youtube.com/watch?v=qxvhFXqspkU',
+                hour: 14,
+                minutes: 0,
             },
             {
-                message: 'Лекция https://www.youtube.com/watch?v=UR2OjhOsuPQ&t=3s',
-                hour: 19,
+                message: 'Медитация в 15:00',
+                hour: 15,
+                minutes: 0,
+            },
+            {
+                message: 'Лекция https://www.youtube.com/watch?v=UR2OjhOsuPQ',
+                hour: 15,
+                minutes: 30,
+            },
+            {
+                message: 'Медитация в 17:00',
+                hour: 17,
                 minutes: 0,
             },
 
             {
-                message: 'Медитация в 21:00',
-                hour: 20,
-                minutes: 50,
+                message: 'Ужин',
+                hour: 18,
+                minutes: 0,
+            },
+            {
+                message: 'Медитация в 19:00',
+                hour: 19,
+                minutes: 0,
             },
         ],
     },
