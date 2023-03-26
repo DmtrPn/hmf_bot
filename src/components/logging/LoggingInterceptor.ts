@@ -30,11 +30,17 @@ export class LoggingInterceptor {
         const complete = (responseData: any) => {
             const statusCode = context.switchToHttp().getResponse().statusCode;
             if (IS_PROD) {
-                this.logger.info(`${message} ${statusCode} ${additionalMessage} ${Date.now() - startTime}`);
+                this.logger.info(
+                    `${new Date().toISOString()} ${message} ${statusCode} ${additionalMessage} ${
+                        Date.now() - startTime
+                    }`,
+                );
             } else {
                 // tslint:disable-next-line:max-line-length
                 this.logger.info(
-                    `${message} statusCode: ${statusCode} ${additionalMessage} time: ${Date.now() - startTime} ms`,
+                    `${new Date().toISOString()} ${message} statusCode: ${statusCode} ${additionalMessage} time: ${
+                        Date.now() - startTime
+                    } ms`,
                 );
             }
             this.logger.debug(`Request-body: ${requestBody}`);

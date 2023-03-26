@@ -10,7 +10,7 @@ export class SendNotificationsCommand extends NotificationCommand<{}> {
     public async execute(): Promise<void> {
         const actualNotifications = await this.getActualNotifications();
         if (actualNotifications.length > 0) {
-            this.logger.info(`Send ${actualNotifications.length} notifications`);
+            this.logger.info(`${new Date().toISOString()} Send ${actualNotifications.length} notifications`);
         }
         await Promise.all(actualNotifications.map(model => sendNotification(model)));
     }

@@ -28,7 +28,9 @@ export class BotLoggingInterceptor {
         }
 
         const complete = (responseData: any) => {
-            this.logger.info(`${message} ${additionalMessage} time: ${Date.now() - startTime} ms`);
+            this.logger.info(
+                `${new Date().toISOString()}${message} ${additionalMessage} time: ${Date.now() - startTime} ms`,
+            );
             this.logger.debug(`Request-body: ${requestBody}`);
             this.logger.debug(`Response-body: ${JSON.stringify(responseData)}`);
         };
